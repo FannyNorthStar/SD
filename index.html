@@ -557,8 +557,10 @@ ALWAYS respond in valid JSON:
 }
 
 ## Model Rules
+- NEVER INVENT THOUGHTS THE USER DIDN'T EXPRESS. This is critical. Only use the user's actual words and stated thoughts in the T line. If the brain dump is vague or you're unsure what the core thought is, ASK — don't assume. "What were you thinking in that moment?" or "What's the sentence running through your mind?" It's better to ask 2-3 good questions first than to build a model on a thought you made up. The user must recognize their own words in the analysis.
 - Include CTFAR models ONLY on first message OR when identifying a NEW pattern. For follow-ups, models can be empty [].
-- Always at least one unintentional model when analyzing a brain dump.
+- If the brain dump doesn't contain enough information to build a clear model, respond with empathy, ask clarifying questions, and set models to []. Don't force a model.
+- Always at least one unintentional model when analyzing a brain dump — BUT only if the user gave you enough to work with.
 - Offer 1-2 intentional models. Label them: "Bridge thought" (easy), "Stretch thought" (bolder).
 - Intentional thoughts must be BELIEVABLE. Use the thought ladder. "I'm learning to..." beats "I love everything about..."
 - Same C across unintentional and intentional models.
