@@ -1039,132 +1039,132 @@ function showToast(msg) { const t=document.getElementById('toast'); t.textConten
 // ═══════════════════════════════════════════════════
 
 const QUESTION_LIBRARY = [
-  { icon: '🔍', topic: 'Problem Reveal', questions: [
+  { icon: '🔍', topic: 'What's weighing on me', questions: [
     'What are you worried about?', 'What scares you right now?', 'What do you wish was different?',
     'What is hurting?', 'What are you struggling with?', 'What isn\'t working?'
   ]},
-  { icon: '🪞', topic: 'Beliefs About Yourself', questions: [
+  { icon: '🪞', topic: 'What I believe about myself', questions: [
     'What is your opinion of you? Write two paragraphs.', 'Do you think you are living the life you are meant to live?',
     'How do you feel about what you have created in your life so far?', 'How do you compare to your ideal?',
     'What is one of your "that\'s not who I am" statements?'
   ]},
-  { icon: '💭', topic: 'Thought Creations', questions: [
+  { icon: '💭', topic: 'My thoughts, my results', questions: [
     'List three positive results in your life right now. What thoughts caused them?',
     'List three negative results in your life now. What thoughts caused them?',
     'List three results you want to create. What beliefs will you need to adopt?'
   ]},
-  { icon: '😤', topic: 'Indulgent Feelings', questions: [
+  { icon: '😤', topic: 'Emotions that keep me stuck', questions: [
     'What is an "indulgent" feeling you would like to stop using?', 'What thoughts cause this feeling?',
     'How does this feeling prevent you from achieving what you want?',
     'Why do you imagine you indulge in this feeling?'
   ]},
-  { icon: '🌡', topic: 'Your Emotional Landscape', questions: [
+  { icon: '🌡', topic: 'How I feel day to day', questions: [
     'What are your three most common daily feelings? Why?',
     'What would you like your top three feelings to be? How would your actions differ?',
     'What emotion are you feeling right now? Describe it in detail — where in your body, heavy or light, fast or slow?',
     'What is your overall state of being? What would you like it to be instead?'
   ]},
-  { icon: '👤', topic: 'Emotional Adulthood', questions: [
+  { icon: '👤', topic: 'When I blame others', questions: [
     'Name a person you think causes a negative emotion in you. What is the thought YOU are having that is really causing your feeling?',
     'What are other thought options when they behave this way?',
     'When someone wants you to behave a certain way so they can feel good, what is that like for you?'
   ]},
-  { icon: '📋', topic: 'Owning Your Life', questions: [
+  { icon: '📋', topic: 'Taking full responsibility', questions: [
     'What have YOU done to end up where you are?', 'Who do you currently blame in your life? Why?',
     'If you owned all the things that have happened in your life, what would that mean for you?'
   ]},
-  { icon: '📖', topic: 'The Manual', questions: [
+  { icon: '📖', topic: 'Rules I have for other people', questions: [
     'Think about someone you want to change. What would you like them to do? Why?',
     'What do you make it mean that they don\'t behave this way?',
     'Do you want them to behave this way even if they don\'t want to?'
   ]},
-  { icon: '🎯', topic: 'Constraint & Focus', questions: [
+  { icon: '🎯', topic: 'Focus & priorities', questions: [
     'What are your top 5 priorities? How much time yesterday did you spend on each?',
     'What would you eliminate to have more focus on what matters?',
     'What is one area of focus for the next 90 days? How will you make it inevitable?'
   ]},
-  { icon: '😱', topic: 'Dancing with Fear', questions: [
+  { icon: '😱', topic: 'Working with fear', questions: [
     'What fears are blocking your path toward your vision?',
     'Where do you see avoidance at work? Where are you trying to outrun fear through perfectionism?',
     'What do you think you\'re protecting yourself from?',
     'What would it look like if you learned to dance with the fear instead?',
     'What would change if you approached this by choosing to dance with the fear?'
   ]},
-  { icon: '🔑', topic: 'Daring & OSER', questions: [
+  { icon: '🔑', topic: 'Daring to go for it', questions: [
     'Think of a project or area where you want more. Describe the VISION — what does it look like once accomplished?',
     'What is standing in the way? Write everything.',
     'What is the impact you want to have on the world or others?',
     'What are your strengths you can leverage? Your weak points needing support?',
     'What would be the first step? What is your plan B?'
   ]},
-  { icon: '💪', topic: 'Confidence', questions: [
+  { icon: '💪', topic: 'Building confidence', questions: [
     'Make a list of every accomplishment you\'ve ever had.',
     'What desired action are you avoiding? What is the worst case scenario?',
     'Create your confident alter ego: what is her self-opinion? How does she handle fear? Give her a name.',
     'Where do you feel most confident? What are your beliefs there? Where least? What beliefs there?'
   ]},
-  { icon: '🗣', topic: 'Speak from Your Future', questions: [
+  { icon: '🗣', topic: 'My future self', questions: [
     'Imagine the version of you who reached your extraordinary goal. What phrases are no longer part of her vocabulary?',
     'What did she stop saying about herself to others?',
     'She\'s at dinner with friends — what is she talking about?',
     'How does she talk about her future? About money? About love? About her career?'
   ]},
-  { icon: '✨', topic: 'Self-Image Word', questions: [
+  { icon: '✨', topic: 'One word for the year', questions: [
     'Go to the end of your year. What have you accomplished?',
     'What is your one extraordinary goal? Who do you need to become to achieve it?',
     'Choose ONE word that expresses the energy you\'re ready to embody.',
     'How would your days differ if you embodied this word? What would you achieve in one full year?',
     'Describe a "day in the life" of the version of you embodying your word.'
   ]},
-  { icon: '🔄', topic: 'Habits & Identity', questions: [
+  { icon: '🔄', topic: 'Habits that shape who I am', questions: [
     'List your daily habits. Which have a negative impact? What beliefs do they reinforce?',
     'Which habit is holding you back the most? What thoughts precede it?',
     'Imagine your future self who achieved your goal — what are her habits?',
     'How do you need to see yourself (identity) to have the habit you want?'
   ]},
-  { icon: '🏰', topic: 'The Royal Treatment', questions: [
+  { icon: '🏰', topic: 'How I take care of myself', questions: [
     'What\'s your #1 excuse preventing self-care? If you saw yourself as a Queen, what would you think instead?',
     'What is the general tone of your self-talk? What one statement is holding you back?',
     'If you saw yourself as a Queen, how would you eat? Move? Speak to yourself?',
     'What is your personal definition of pleasure? What gets in the way of more of it?'
   ]},
-  { icon: '🎨', topic: 'Live Like an Editor', questions: [
+  { icon: '🎨', topic: 'Designing my life on purpose', questions: [
     'What feelings do you want more of? What words do you want people to use to describe you?',
     'Name a BIG goal. What emotion will you feel once achieved?',
     'Choose ONE word that expresses the energy you\'re ready to embody — this is your title.',
     'What is the tone of your desired thinking? Complete: "Instead of [X], we say [Y]."'
   ]},
-  { icon: '⚡', topic: 'Energy & Environment', questions: [
+  { icon: '⚡', topic: 'My space, my energy', questions: [
     'Walk through your home. What does your favorite space reflect about you? Your least favorite?',
     'What are you currently tolerating in your life?',
     'What intellectual consumptions give you energy (+) vs drain you (-)? What upgrade will you make?',
     'What are your time wasters? What are your time givers?'
   ]},
-  { icon: '💎', topic: 'Luxury & Standards', questions: [
+  { icon: '💎', topic: 'Raising my standards', questions: [
     'What\'s your luxury story? Your experiences with and thoughts about luxury?',
     'If luxury were a feeling, what would it be? How can you create more of it now?',
     'What luxuries are available to you right now that you\'re not enjoying?',
     'What standards does your future self hold? What is one standard you\'ll raise this month?'
   ]},
-  { icon: '🏗', topic: 'Work & Discipline', questions: [
+  { icon: '🏗', topic: 'Showing up for what I want', questions: [
     'What are your general thoughts about work? How do they make you feel?',
     'How would you rather feel about discipline?',
     'What do you want to create? Why? How will you know when it\'s done?',
     'Think about your desire already accomplished. How do you feel? How do you show up differently?',
     'What one tiny habit will you begin? What will the compound effect be over 6 months?'
   ]},
-  { icon: '⏰', topic: 'Decisions & Future Self', questions: [
+  { icon: '⏰', topic: 'Making better decisions', questions: [
     'Name one area where you make poor decisions in the moment.',
     'With forethought, what decisions would you prefer to make?',
     'If your present self makes the decision, how can you ensure your future self follows through?',
     'How would you be different if you made and honored decisions ahead of time?'
   ]},
-  { icon: '🚧', topic: 'Boundaries', questions: [
+  { icon: '🚧', topic: 'Setting boundaries', questions: [
     'What is a boundary you need to set? With whom?',
     'What are your fears in setting this boundary? What are the benefits?',
     'How will you set it? How will you ensure you follow through?'
   ]},
-  { icon: '❤️', topic: 'Unconditional Love', questions: [
+  { icon: '❤️', topic: 'Loving without conditions', questions: [
     'Think of someone challenging to love. What conditions have you put on loving them?',
     'What does it feel like when you\'ve chosen not to love them?',
     'What would it be like to love them without condition?'
