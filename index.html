@@ -333,42 +333,6 @@ header nav { display: flex; gap: 6px; align-items: center; }
 </head>
 <body>
 
-<!-- ═══ PRIVACY GATE ═══ -->
-<div class="privacy-gate" id="privacy-gate">
-  <div class="privacy-content">
-    <h1>Thoughts of the Day 🌿</h1>
-    <p class="subtitle">A self-coaching companion for everyday thought work.</p>
-
-    <div class="privacy-box">
-      <h3>🔒 Before you begin — where your data goes</h3>
-      <p>This is a personal tool. Your coaching sessions contain vulnerable, private thoughts. Here's exactly what happens with them:</p>
-    </div>
-
-    <div class="privacy-box">
-      <h3>📱 Your browser</h3>
-      <p>All conversations, settings, and your API key are stored in this browser's localStorage. They never leave your device unless you trigger an API call or Sheets sync. Anyone with physical access to this browser can inspect localStorage and see everything.</p>
-    </div>
-
-    <div class="privacy-box">
-      <h3>🔗 OpenAI's servers</h3>
-      <p>When you start a session, your text is sent over HTTPS to OpenAI's API for processing. OpenAI retains API inputs and outputs for up to 30 days for abuse monitoring. During that window, a limited number of authorized OpenAI employees and contractors can access data to investigate suspected abuse. After 30 days, it's deleted.</p>
-      <p><strong>API data is not used for model training</strong> unless you explicitly opt in (you haven't). If you share an API key with friends, nobody — not you, not your friends, not OpenAI's dashboard — can see the content of each other's sessions. The key is only for authentication and billing.</p>
-    </div>
-
-    <div class="privacy-box">
-      <h3>📊 Google Sheets (optional)</h3>
-      <p>If you configure it, a copy of each exchange is sent to your Google Sheet via a webhook. That data lives in your Google Drive and is only accessible to you (unless you share the sheet).</p>
-    </div>
-
-    <div class="privacy-box">
-      <h3>⚠️ This is not therapy</h3>
-      <p>This tool draws from cognitive coaching frameworks for everyday thought patterns, goal-setting, and self-awareness. It does not replace professional mental health support. If you're in crisis, please reach out to a qualified professional.</p>
-    </div>
-
-    <button class="privacy-accept" onclick="acceptPrivacy()">I understand — let me in</button>
-  </div>
-</div>
-
 <div class="app-shell">
   <header>
     <a class="logo" onclick="showView('home')">Thoughts of the Day <span>ctfar</span></a>
@@ -540,13 +504,13 @@ header nav { display: flex; gap: 6px; align-items: center; }
 // ═══════════════════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════════════════
-let state = { sessions: [], currentSessionId: null, settings: { apiKey: '', model: 'gpt-4o', sheetsUrl: '' }, privacyAccepted: false, patterns: null };
+let state = { sessions: [], currentSessionId: null, settings: { apiKey: '', model: 'gpt-4o', sheetsUrl: '' }, patterns: null };
 const STORAGE_KEY = 'ask-a-coach-data';
 
 function loadState() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) { const s = JSON.parse(raw); Object.assign(state, { sessions: s.sessions||[], settings: {...state.settings,...s.settings}, privacyAccepted: s.privacyAccepted||false, patterns: s.patterns||null }); }
+    if (raw) { const s = JSON.parse(raw); Object.assign(state, { sessions: s.sessions||[], settings: {...state.settings,...s.settings}, patterns: s.patterns||null }); }
   } catch(e) { console.warn('Load failed', e); }
 }
 function saveState() {
@@ -681,18 +645,6 @@ ALWAYS respond in valid JSON:
 
 ## Safety
 You are NOT a therapist. If someone expresses suicidal ideation, severe distress, trauma, or clinical symptoms, acknowledge with compassion and recommend professional support. Don't coach through a crisis. Never diagnose.`;
-
-// ═══════════════════════════════════════════════════
-// PRIVACY
-// ═══════════════════════════════════════════════════
-function acceptPrivacy() {
-  state.privacyAccepted = true;
-  saveState();
-  document.getElementById('privacy-gate').classList.add('hidden');
-}
-function checkPrivacy() {
-  if (state.privacyAccepted) document.getElementById('privacy-gate').classList.add('hidden');
-}
 
 // ═══════════════════════════════════════════════════
 // VIEWS
@@ -1057,9 +1009,8 @@ function clearAllData() {
   if (!confirm('This will delete ALL sessions and settings. Are you sure?')) return;
   if (!confirm('Really? This cannot be undone.')) return;
   localStorage.removeItem(STORAGE_KEY);
-  state = { sessions:[], currentSessionId:null, settings:{apiKey:'',model:'gpt-4o',sheetsUrl:''}, privacyAccepted:false, patterns:null };
+  state = { sessions:[], currentSessionId:null, settings:{apiKey:'',model:'gpt-4o',sheetsUrl:''}, patterns:null };
   closeSettings(); showView('home'); showToast('All data cleared');
-  document.getElementById('privacy-gate').classList.remove('hidden');
 }
 function checkApiKey() {
   if (!state.settings.apiKey) { showToast('Add your OpenAI API key in Settings first'); openSettings(); return false; }
@@ -1522,7 +1473,6 @@ function startBizSession() {
 // INIT
 // ═══════════════════════════════════════════════════
 loadState();
-checkPrivacy();
 renderRecentSessions();
 document.getElementById('settings-modal').addEventListener('click', e => { if(e.target===e.currentTarget) closeSettings(); });
 </script>
