@@ -1232,7 +1232,6 @@ RULES:
 - Mix question types: some introspective (go inward), some confrontational (challenge assumptions), some creative (imagine, visualize), some action-oriented (what would you do differently)
 - Each question should open a door the person hasn't considered yet — don't ask the obvious
 - Questions should feel like they come from a coach who knows you, not a textbook
-- For each question, add a short tag indicating which framework inspired it (1-3 words, like "future self" or "the manual" or "self-image" or "fear patterns")
 - The questions should build on each other — start accessible, go deeper
 - Respond in the language the user writes in (French topic → French questions, English → English)
 
@@ -1240,7 +1239,7 @@ Respond ONLY in valid JSON:
 {
   "title": "Short evocative title for this question set",
   "questions": [
-    { "q": "The question text", "tag": "framework tag" }
+    { "q": "The question text" }
   ]
 }`;
 
@@ -1280,7 +1279,7 @@ async function generateQuestions() {
       const safeQ = escHTML(item.q).replace(/'/g, "&#39;");
       html += '<div class="generated-q" onclick="startQuestionSession(\'' + safeQ + '\')">';
       html += escHTML(item.q);
-      html += '<span class="q-framework">' + escHTML(item.tag || '') + '</span></div>';
+      html += '</div>';
     });
 
     html += '<div class="gen-actions"><button class="btn-secondary" onclick="generateQuestions()">Regenerate</button></div></div>';
