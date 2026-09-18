@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ask a Coach</title>
+<title>Thoughts of the Day</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -290,8 +290,8 @@ header nav { display: flex; gap: 6px; align-items: center; }
 <!-- ═══ PRIVACY GATE ═══ -->
 <div class="privacy-gate" id="privacy-gate">
   <div class="privacy-content">
-    <h1>Ask a Coach 🌿</h1>
-    <p class="subtitle">A self-coaching companion that helps you see the thought patterns behind your struggles and find your own path forward.</p>
+    <h1>Thoughts of the Day 🌿</h1>
+    <p class="subtitle">A self-coaching companion for everyday thought work.</p>
 
     <div class="privacy-box">
       <h3>🔒 Before you begin — where your data goes</h3>
@@ -325,7 +325,7 @@ header nav { display: flex; gap: 6px; align-items: center; }
 
 <div class="app-shell">
   <header>
-    <a class="logo" onclick="showView('home')">Ask a Coach <span>ctfar</span></a>
+    <a class="logo" onclick="showView('home')">Thoughts of the Day <span>ctfar</span></a>
     <nav>
       <button class="icon-btn" title="Patterns" onclick="showView('patterns')">🔍</button>
       <button class="icon-btn" title="Archive" onclick="showView('archive')">📋</button>
@@ -337,7 +337,6 @@ header nav { display: flex; gap: 6px; align-items: center; }
   <div id="view-home" class="view active">
     <div class="home-hero">
       <h1>What's on your mind?</h1>
-      <p>Write freely — messy, unfiltered, emotional. Your coach will help you see the thought patterns underneath and offer a path forward.</p>
     </div>
     <div class="dump-area">
       <textarea id="brain-dump" placeholder="I keep thinking that... I feel stuck because... What's bothering me is... I notice I always..."></textarea>
@@ -884,7 +883,7 @@ async function testSheetsConnection() {
   const s = document.getElementById('sheets-status');
   s.innerHTML = '<span class="status-dot pending"></span> Testing...';
   try {
-    await fetch(url, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ test:true, timestamp:new Date().toISOString(), message:'Connection test from Ask a Coach' }) });
+    await fetch(url, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ test:true, timestamp:new Date().toISOString(), message:'Connection test from Thoughts of the Day' }) });
     s.innerHTML = '<span class="status-dot ok"></span> Request sent (check your sheet)';
   } catch(e) { s.innerHTML = '<span class="status-dot err"></span> Failed: ' + e.message; }
 }
