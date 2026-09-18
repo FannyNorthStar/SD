@@ -1199,14 +1199,96 @@ if (exploreTopicInput) {
 function switchExploreTab(tab) {
   document.querySelectorAll('.explore-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.explore-pane').forEach(p => p.classList.remove('active'));
-  if (tab === 'free') {
-    document.querySelectorAll('.explore-tab')[0].classList.add('active');
-    document.getElementById('explore-free').classList.add('active');
-  } else {
-    document.querySelectorAll('.explore-tab')[1].classList.add('active');
-    document.getElementById('explore-library').classList.add('active');
-    renderLibrary();
+  const tabs = document.querySelectorAll('.explore-tab');
+  if (tab === 'free') { tabs[0].classList.add('active'); document.getElementById('explore-free').classList.add('active'); }
+  else if (tab === 'generate') { tabs[1].classList.add('active'); document.getElementById('explore-generate').classList.add('active'); }
+  else { tabs[2].classList.add('active'); document.getElementById('explore-library').classList.add('active'); renderLibrary(); }
+}
+
+const generateTopicInput = document.getElementById('generate-topic');
+const btnGenerate = document.getElementById('btn-generate');
+if (generateTopicInput) {
+  generateTopicInput.addEventListener('input', () => {
+    btnGenerate.disabled = generateTopicInput.value.trim().length < 5;
+  });
+}
+
+const GENERATE_PROMPT = `You are a master coaching question designer. You create deep, powerful journaling and self-coaching questions in the style of the world's best coaching programs.
+
+Your question style draws from these frameworks — use them as creative lenses, not rigid templates:
+- CTFAR Model: questions that separate circumstance from thought, identify the feeling driving action, reveal the self-fulfilling result
+- Self-Image work: questions about identity, "I am the kind of person who...", future self, self-image capacity
+- Thought Ladder: questions that help move from painful beliefs to believable better ones
+- Emotional mastery: questions about allowing feelings, naming them precisely, the emotional middleman
+- The Manual: questions about the unwritten rules we have for others
+- Fear strategies: questions about avoidance, minimization, and flight-forward patterns
+- Deep Dive principles: questions about what you're NOT noticing, throwaway phrases, believing on purpose
+- Values alignment: questions about what really matters vs what you think should matter
+- Constraint: questions about focus, elimination, deciding ahead of time
+- Environment & embodiment: questions about how surroundings, style, and physical actions shape identity
+
+RULES:
+- Generate 8-12 questions tailored to the user's specific topic
+- Mix question types: some introspective (go inward), some confrontational (challenge assumptions), some creative (imagine, visualize), some action-oriented (what would you do differently)
+- Each question should open a door the person hasn't considered yet — don't ask the obvious
+- Questions should feel like they come from a coach who knows you, not a textbook
+- For each question, add a short tag indicating which framework inspired it (1-3 words, like "future self" or "the manual" or "self-image" or "fear patterns")
+- The questions should build on each other — start accessible, go deeper
+- Respond in the language the user writes in (French topic → French questions, English → English)
+
+Respond ONLY in valid JSON:
+{
+  "title": "Short evocative title for this question set",
+  "questions": [
+    { "q": "The question text", "tag": "framework tag" }
+  ]
+}`;
+
+async function generateQuestions() {
+  if (!checkApiKey()) return;
+  const topic = generateTopicInput.value.trim();
+  if (topic.length < 5) return;
+
+  const container = document.getElementById('generated-questions');
+  container.innerHTML = '<div class="generating"><div class="thinking"><div class="thinking-dots"><span></span><span></span><span></span></div> Crafting questions for you...</div></div>';
+  btnGenerate.disabled = true;
+
+  try {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + state.settings.apiKey },
+      body: JSON.stringify({
+        model: state.settings.model,
+        messages: [
+          { role: 'system', content: GENERATE_PROMPT },
+          { role: 'user', content: topic }
+        ],
+        temperature: 0.85,
+        max_tokens: 1500,
+        response_format: { type: 'json_object' }
+      })
+    });
+    if (!response.ok) throw new Error('API error ' + response.status);
+    const data = await response.json();
+    const raw = data.choices?.[0]?.message?.content || '{}';
+    const parsed = JSON.parse(raw);
+
+    let html = '<div class="generated-set"><h3>' + escHTML(parsed.title || topic) + '</h3>';
+    html += '<p class="gen-subtitle">Tap any question to start an explore session around it</p>';
+
+    (parsed.questions || []).forEach(function(item) {
+      const safeQ = escHTML(item.q).replace(/'/g, "&#39;");
+      html += '<div class="generated-q" onclick="startQuestionSession(\'' + safeQ + '\')">';
+      html += escHTML(item.q);
+      html += '<span class="q-framework">' + escHTML(item.tag || '') + '</span></div>';
+    });
+
+    html += '<div class="gen-actions"><button class="btn-secondary" onclick="generateQuestions()">Regenerate</button></div></div>';
+    container.innerHTML = html;
+  } catch(e) {
+    container.innerHTML = '<div class="empty-state">⚠️ ' + e.message + '</div>';
   }
+  btnGenerate.disabled = false;
 }
 
 function renderLibrary() {
