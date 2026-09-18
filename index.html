@@ -961,7 +961,7 @@ async function syncToSheets(session) {
     if (!parsed && lastAssistant) try { parsed = JSON.parse(lastAssistant.content); } catch(e) {}
     let modelsText = '';
     if (parsed?.models?.length) modelsText = parsed.models.map(m=>`[${m.type}${m.label?': '+m.label:''}] C:${m.c} | T:${m.t} | F:${m.f} | A:${m.a} | R:${m.r}`).join('\n');
-    await fetch(url, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ sessionId:session.id, sessionTitle:session.title, timestamp:new Date().toISOString(), brainDump:lastUser?.content||'', coachResponse:parsed?.message||lastAssistant?.content||'', ctfarModels:modelsText, coachingQuestion:parsed?.coaching_question||'', messageCount:session.messages.length }) });
+    await fetch(url, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ user:currentUser||'unknown', sessionId:session.id, sessionTitle:session.title, timestamp:new Date().toISOString(), brainDump:lastUser?.content||'', coachResponse:parsed?.message||lastAssistant?.content||'', ctfarModels:modelsText, coachingQuestion:parsed?.coaching_question||'', messageCount:session.messages.length }) });
     session.synced = true; saveState();
   } catch(e) { console.warn('Sheets sync failed:', e); }
 }
