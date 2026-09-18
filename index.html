@@ -80,6 +80,24 @@ header nav { display: flex; gap: 6px; align-items: center; }
 .view { display: none; flex-direction: column; flex: 1; }
 .view.active { display: flex; }
 
+/* ── User Picker ── */
+.user-picker {
+  position: fixed; inset: 0; background: var(--bg); z-index: 500;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+}
+.user-picker.hidden { display: none; }
+.user-picker-content { text-align: center; }
+.user-picker-content h1 {
+  font-family: var(--font-serif); font-size: 2rem; font-weight: 400; margin-bottom: 32px;
+}
+.user-buttons { display: flex; gap: 16px; justify-content: center; }
+.user-btn {
+  padding: 16px 40px; background: var(--surface-raised); border: 2px solid var(--border);
+  border-radius: var(--radius-lg); font-family: var(--font-sans); font-size: 1.1rem;
+  font-weight: 500; color: var(--text); cursor: pointer; transition: all var(--transition);
+}
+.user-btn:hover { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+
 /* ── Home ── */
 .home-hero { padding: 48px 0 32px; text-align: center; }
 .home-hero h1 { font-family: var(--font-serif); font-size: 2.2rem; font-weight: 400; line-height: 1.2; margin-bottom: 10px; }
@@ -295,10 +313,21 @@ header nav { display: flex; gap: 6px; align-items: center; }
 </head>
 <body>
 
+<div class="user-picker" id="user-picker">
+  <div class="user-picker-content">
+    <h1>Who's there today?</h1>
+    <div class="user-buttons">
+      <button class="user-btn" onclick="selectUser('sissi')">Sissi</button>
+      <button class="user-btn" onclick="selectUser('issa')">Issa</button>
+    </div>
+  </div>
+</div>
+
 <div class="app-shell">
   <header>
     <a class="logo" onclick="showView('home')">Thoughts of the Day <span>ctfar</span></a>
     <nav>
+      <button class="icon-btn" title="Switch user" onclick="switchUser()" id="user-badge" style="font-size:0.75rem;font-weight:600;width:auto;padding:0 10px;border-radius:999px;background:var(--accent-light);color:var(--accent);"></button>
       <button class="icon-btn" title="Explore" onclick="showView('explore')">🧭</button>
       <button class="icon-btn" title="Business" onclick="showView('business')">💼</button>
       <button class="icon-btn" title="Patterns" onclick="showView('patterns')">🔍</button>
@@ -467,16 +496,33 @@ header nav { display: flex; gap: 6px; align-items: center; }
 // STATE
 // ═══════════════════════════════════════════════════
 let state = { sessions: [], currentSessionId: null, settings: { apiKey: '', model: 'gpt-4o', sheetsUrl: '' }, patterns: null };
-const STORAGE_KEY = 'ask-a-coach-data';
+let currentUser = null;
+
+function getStorageKey() { return 'totd-' + currentUser; }
 
 function loadState() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(getStorageKey());
     if (raw) { const s = JSON.parse(raw); Object.assign(state, { sessions: s.sessions||[], settings: {...state.settings,...s.settings}, patterns: s.patterns||null }); }
   } catch(e) { console.warn('Load failed', e); }
 }
 function saveState() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) { console.warn('Save failed', e); }
+  try { localStorage.setItem(getStorageKey(), JSON.stringify(state)); } catch(e) { console.warn('Save failed', e); }
+}
+
+function selectUser(user) {
+  currentUser = user;
+  localStorage.setItem('totd-current-user', user);
+  document.getElementById('user-picker').classList.add('hidden');
+  document.getElementById('user-badge').textContent = user.charAt(0).toUpperCase() + user.slice(1);
+  state = { sessions: [], currentSessionId: null, settings: { apiKey: '', model: 'gpt-4o', sheetsUrl: '' }, patterns: null };
+  loadState();
+  renderRecentSessions();
+  showView('home');
+}
+
+function switchUser() {
+  document.getElementById('user-picker').classList.remove('hidden');
 }
 
 // ═══════════════════════════════════════════════════
@@ -970,7 +1016,7 @@ function saveSettings() {
 function clearAllData() {
   if (!confirm('This will delete ALL sessions and settings. Are you sure?')) return;
   if (!confirm('Really? This cannot be undone.')) return;
-  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(getStorageKey());
   state = { sessions:[], currentSessionId:null, settings:{apiKey:'',model:'gpt-4o',sheetsUrl:''}, patterns:null };
   closeSettings(); showView('home'); showToast('All data cleared');
 }
@@ -1434,8 +1480,14 @@ function startBizSession() {
 // ═══════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════
-loadState();
-renderRecentSessions();
+var savedUser = localStorage.getItem('totd-current-user');
+if (savedUser) {
+  currentUser = savedUser;
+  document.getElementById('user-picker').classList.add('hidden');
+  document.getElementById('user-badge').textContent = savedUser.charAt(0).toUpperCase() + savedUser.slice(1);
+  loadState();
+  renderRecentSessions();
+}
 document.getElementById('settings-modal').addEventListener('click', e => { if(e.target===e.currentTarget) closeSettings(); });
 </script>
 </body>
