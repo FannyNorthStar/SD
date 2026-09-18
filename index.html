@@ -275,6 +275,18 @@ header nav { display: flex; gap: 6px; align-items: center; }
 .status-dot.pending { background: var(--text-muted); }
 .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); padding: 10px 24px; background: var(--text); color: var(--bg); border-radius: 999px; font-size: 0.85rem; opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; z-index: 200; pointer-events: none; }
 .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+/* ── Business ── */
+.biz-header { padding: 24px 0 16px; }
+.biz-header h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; }
+.project-tabs { display: flex; gap: 4px; margin-bottom: 20px; background: var(--surface-muted); border-radius: 999px; padding: 3px; }
+.project-tab { flex: 1; padding: 8px 12px; border: none; border-radius: 999px; background: transparent; color: var(--text-secondary); font-family: var(--font-sans); font-size: 0.78rem; font-weight: 500; cursor: pointer; transition: all var(--transition); text-align: center; white-space: nowrap; }
+.project-tab.active { background: var(--surface-raised); color: var(--text); box-shadow: var(--shadow-sm); }
+.biz-input { margin-bottom: 20px; }
+.biz-input textarea { width: 100%; min-height: 80px; padding: 16px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface-raised); color: var(--text); font-family: var(--font-sans); font-size: 0.92rem; line-height: 1.6; resize: vertical; }
+.biz-input textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+.biz-input textarea::placeholder { color: var(--text-muted); font-style: italic; }
+.biz-sessions { padding-bottom: 40px; }
+
 /* ── Explore ── */
 .explore-header { padding: 24px 0 16px; }
 .explore-header h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; }
@@ -362,6 +374,7 @@ header nav { display: flex; gap: 6px; align-items: center; }
     <a class="logo" onclick="showView('home')">Thoughts of the Day <span>ctfar</span></a>
     <nav>
       <button class="icon-btn" title="Explore" onclick="showView('explore')">🧭</button>
+      <button class="icon-btn" title="Business" onclick="showView('business')">💼</button>
       <button class="icon-btn" title="Patterns" onclick="showView('patterns')">🔍</button>
       <button class="icon-btn" title="Archive" onclick="showView('archive')">📋</button>
       <button class="icon-btn" title="Settings" onclick="openSettings()">⚙️</button>
@@ -421,6 +434,24 @@ header nav { display: flex; gap: 6px; align-items: center; }
       </div>
     </div>
   </div>
+  <!-- ═══ BUSINESS ═══ -->
+  <div id="view-business" class="view">
+    <div class="biz-header"><h2>Business</h2></div>
+    <div class="project-tabs" id="project-tabs">
+      <button class="project-tab active" onclick="switchProject('seo')">🌐 SEO / Website</button>
+      <button class="project-tab" onclick="switchProject('bnb')">🏡 B&B</button>
+      <button class="project-tab" onclick="switchProject('books')">📚 Books</button>
+    </div>
+    <div class="biz-input">
+      <textarea id="biz-dump" placeholder="What are you working on? A challenge, an idea, a decision, a fear, a strategy question..."></textarea>
+      <div class="dump-actions">
+        <button class="btn-primary" id="btn-biz" onclick="startBizSession()" disabled>Send</button>
+      </div>
+    </div>
+    <div class="section-label" id="biz-section-label">Recent — SEO / Website</div>
+    <div class="biz-sessions sessions-list" id="biz-sessions-list"></div>
+  </div>
+
   <!-- ═══ EXPLORE ═══ -->
   <div id="view-explore" class="view">
     <div class="explore-header"><h2>Explore</h2></div>
@@ -674,6 +705,7 @@ function showView(name) {
   else if (name === 'session' && state.currentSessionId) renderSession();
   else if (name === 'patterns') renderPatterns();
   else if (name === 'explore') renderLibrary();
+  else if (name === 'business') renderBizSessions();
 }
 
 // ═══════════════════════════════════════════════════
@@ -779,6 +811,18 @@ async function sendReply() {
 }
 
 // ═══════════════════════════════════════════════════
+// SYSTEM PROMPT ROUTER
+// ═══════════════════════════════════════════════════
+function getBizSystemPrompt(session) {
+  if (session.mode === 'business') {
+    var ctx = PROJECT_CONTEXTS[session.project] || '';
+    return BUSINESS_SYSTEM_PROMPT.replace('[PROJECT_CONTEXT]', ctx);
+  }
+  if (session.mode === 'explore') return SYSTEM_PROMPT + EXPLORE_SYSTEM_ADDITION;
+  return SYSTEM_PROMPT;
+}
+
+// ═══════════════════════════════════════════════════
 // AI INTERACTION
 // ═══════════════════════════════════════════════════
 async function getCoachResponse(session) {
@@ -798,7 +842,7 @@ async function getCoachResponse(session) {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${state.settings.apiKey}` },
-      body: JSON.stringify({ model: state.settings.model, messages: [{ role:'system', content: SYSTEM_PROMPT + (session.mode === 'explore' ? EXPLORE_SYSTEM_ADDITION : '') }, ...contextMessages], temperature: 0.75, max_tokens: 2000, response_format: { type: 'json_object' } })
+      body: JSON.stringify({ model: state.settings.model, messages: [{ role:'system', content: getBizSystemPrompt(session) }, ...contextMessages], temperature: 0.75, max_tokens: 2000, response_format: { type: 'json_object' } })
     });
     if (!response.ok) { const err = await response.json().catch(()=>({})); throw new Error(err.error?.message || `API error ${response.status}`); }
     const data = await response.json();
@@ -1341,6 +1385,134 @@ function createExploreSession(firstMessage, title) {
   state.sessions.push(session);
   state.currentSessionId = session.id;
   saveState();
+  showView('session');
+  renderSession();
+  getCoachResponse(session);
+}
+
+// ═══════════════════════════════════════════════════
+// BUSINESS TAB
+// ═══════════════════════════════════════════════════
+
+const PROJECTS = {
+  seo: { label: 'SEO / Website', icon: '🌐' },
+  bnb: { label: 'B&B', icon: '🏡' },
+  books: { label: 'Books', icon: '📚' }
+};
+
+let currentProject = 'seo';
+
+const BUSINESS_SYSTEM_PROMPT = `You are a business coach who blends practical strategy with thought work. You help entrepreneurs build real businesses while managing the mindset that makes or breaks execution.
+
+## Your Personality (Business Mode)
+- Direct, warm, and honest. Not a cheerleader, not a drill sergeant.
+- You make business feel like a creative adventure, not a grind. Even when it's scary, there's pleasure in the process.
+- Challenge resistance and fear with curiosity, not force. "What's the thought under that thought?" works here too.
+- Give PRACTICAL, SPECIFIC advice — not vague "just believe in yourself" coaching. Frameworks, steps, numbers, examples.
+- When someone has a thought problem disguised as a strategy problem, name it. "That sounds like a fear of being visible, not a niche problem."
+- When someone has a strategy problem, give strategy. Don't coach the feelings when they need a funnel.
+- Know the difference. That's the skill.
+
+## Business Frameworks You Draw From
+- Grand Slam Offer & Value Equation (Hormozi): Dream Outcome × Perceived Likelihood / Time Delay × Effort
+- Core Four lead gen: Warm Outreach, Free Content, Cold Outreach, Paid Ads. Plus "More Better New."
+- Value Ladder: free → low → mid → high ticket → continuity
+- Hook, Story, Offer: every piece of content and marketing
+- Dream 100: the people/platforms who already have your audience
+- StoryBrand SB7: customer is hero, brand is guide, clear plan, direct CTA, avoid failure, end in success
+- Grunt Test: can someone understand what you do in 5 seconds?
+- Permission Marketing: earn attention, don't interrupt. Strangers → Friends → Customers.
+- Purple Cow: be remarkable or be invisible. Safe is risky.
+- Perennial Seller: create work that lasts. Build platform. Word of mouth is the only sustainable strategy.
+- Unreasonable Hospitality: service is black and white, hospitality is color. 95/5 rule.
+- Profit First: Sales - Profit = Expenses. Small plates. Know your numbers.
+- Who Not How: find the right people instead of figuring out everything yourself.
+- B- work ships. Done beats perfect. Small consistent actions.
+- Math problems vs Thought problems: know which you're solving.
+
+## Thought Work in Business Context
+You also use CTFAR, thought ladder, bridge thoughts, self-image work, and all coaching principles — but APPLIED to business situations:
+- "I don't know my niche" might be confusion (indulgent emotion) masking fear of excluding people
+- "I need a better website first" might be buffering with preparation instead of selling
+- "Nobody will pay for this" is a thought, not a fact — examine the evidence
+- Self-image capacity applies to money: if you see yourself as someone who makes $3K/month, you'll unconsciously sabotage beyond that
+
+## Response Format
+ALWAYS respond in valid JSON:
+{
+  "message": "Your response mixing practical advice with thought work where relevant. Be specific. Give frameworks, steps, or questions. 3-6 paragraphs.",
+  "models": [],
+  "coaching_question": "One question that moves them forward — either strategic or mindset, whichever they need more right now"
+}
+
+Use CTFAR models only when a clear thought pattern is blocking business progress. For pure strategy questions, models stay empty.
+
+## Project Context
+The user is working on multiple projects. This session is about: [PROJECT_CONTEXT]. Tailor your advice to this specific type of business. Reference relevant frameworks for this project type.`;
+
+const PROJECT_CONTEXTS = {
+  seo: 'SEO advisory and website building services. They help businesses get found online and convert visitors into customers. Key frameworks: StoryBrand for client websites, Grand Slam Offer for their own service packaging, Core Four for their own lead gen, Grunt Test for every site they build.',
+  bnb: 'A B&B (bed and breakfast) hospitality business. They need guests to find them, book directly, and have an experience worth talking about. Key frameworks: Unreasonable Hospitality (95/5 rule, one-size-fits-one), StoryBrand for the B&B website, Dream 100 for partnerships, Permission Marketing for repeat guests, Profit First for cash management.',
+  books: 'Independent publishing — art books, photography books, niche publications. They handle everything: writing, printing, selling, distribution. Key frameworks: Perennial Seller (create to last), Purple Cow (the book must be remarkable), Permission Marketing (build audience before publishing), Value Ladder (free content → book → limited editions → workshops).'
+};
+
+const bizDump = document.getElementById('biz-dump');
+const btnBiz = document.getElementById('btn-biz');
+
+if (bizDump) {
+  bizDump.addEventListener('input', function() {
+    btnBiz.disabled = bizDump.value.trim().length < 10;
+  });
+}
+
+function switchProject(proj) {
+  currentProject = proj;
+  document.querySelectorAll('.project-tab').forEach(function(t) { t.classList.remove('active'); });
+  var tabs = document.querySelectorAll('.project-tab');
+  if (proj === 'seo') tabs[0].classList.add('active');
+  else if (proj === 'bnb') tabs[1].classList.add('active');
+  else tabs[2].classList.add('active');
+  document.getElementById('biz-section-label').textContent = 'Recent — ' + PROJECTS[proj].label;
+  renderBizSessions();
+}
+
+function renderBizSessions() {
+  var c = document.getElementById('biz-sessions-list');
+  var sessions = state.sessions
+    .filter(function(s) { return s.project === currentProject; })
+    .sort(function(a, b) { return new Date(b.updatedAt) - new Date(a.updatedAt); })
+    .slice(0, 10);
+
+  if (!sessions.length) {
+    c.innerHTML = '<div class="empty-state"><span class="empty-icon">' + PROJECTS[currentProject].icon + '</span>No sessions yet for ' + PROJECTS[currentProject].label + '.</div>';
+    return;
+  }
+  c.innerHTML = sessions.map(function(s) { return sessionCardHTML(s); }).join('');
+}
+
+function startBizSession() {
+  if (!checkApiKey()) return;
+  var text = bizDump.value.trim();
+  if (text.length < 10) return;
+
+  var session = {
+    id: genId(),
+    title: generateTitle(text),
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    messages: [{ role: 'user', content: text, timestamp: new Date().toISOString() }],
+    synced: false,
+    mode: 'business',
+    project: currentProject
+  };
+
+  state.sessions.push(session);
+  state.currentSessionId = session.id;
+  saveState();
+
+  bizDump.value = '';
+  btnBiz.disabled = true;
+
   showView('session');
   renderSession();
   getCoachResponse(session);
