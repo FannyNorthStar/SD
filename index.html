@@ -80,43 +80,6 @@ header nav { display: flex; gap: 6px; align-items: center; }
 .view { display: none; flex-direction: column; flex: 1; }
 .view.active { display: flex; }
 
-/* ── Privacy Screen ── */
-.privacy-gate {
-  position: fixed; inset: 0; background: var(--bg); z-index: 500;
-  display: flex; align-items: center; justify-content: center; padding: 24px;
-}
-.privacy-gate.hidden { display: none; }
-.privacy-content {
-  max-width: 560px; width: 100%; max-height: 90vh; overflow-y: auto;
-}
-.privacy-content h1 {
-  font-family: var(--font-serif); font-size: 2rem; font-weight: 400;
-  margin-bottom: 8px; text-align: center;
-}
-.privacy-content .subtitle {
-  text-align: center; color: var(--text-secondary); font-size: 0.92rem;
-  margin-bottom: 32px; line-height: 1.5;
-}
-.privacy-box {
-  background: var(--surface-raised); border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg); padding: 24px; margin-bottom: 20px;
-}
-.privacy-box h3 {
-  font-size: 0.88rem; font-weight: 600; margin-bottom: 10px;
-  display: flex; align-items: center; gap: 8px;
-}
-.privacy-box p {
-  font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 8px;
-}
-.privacy-box p:last-child { margin-bottom: 0; }
-.privacy-accept {
-  width: 100%; padding: 14px; background: var(--accent); color: #fff; border: none;
-  border-radius: 999px; font-family: var(--font-sans); font-size: 0.95rem;
-  font-weight: 500; cursor: pointer; transition: background var(--transition);
-  margin-top: 8px;
-}
-.privacy-accept:hover { background: var(--accent-hover); }
-
 /* ── Home ── */
 .home-hero { padding: 48px 0 32px; text-align: center; }
 .home-hero h1 { font-family: var(--font-serif); font-size: 2.2rem; font-weight: 400; line-height: 1.2; margin-bottom: 10px; }
@@ -327,7 +290,6 @@ header nav { display: flex; gap: 6px; align-items: center; }
   .dump-area textarea { min-height: 140px; padding: 16px; }
   .message.user .msg-bubble { max-width: 95%; }
   header .logo { font-size: 1.3rem; }
-  .privacy-content h1 { font-size: 1.6rem; }
 }
 </style>
 </head>
