@@ -268,6 +268,25 @@ header nav { display: flex; gap: 6px; align-items: center; }
 .biz-input textarea::placeholder { color: var(--text-muted); font-style: italic; }
 .biz-sessions { padding-bottom: 40px; }
 
+/* ── Instagram ── */
+.insta-header { padding: 24px 0 16px; }
+.insta-header h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; }
+.insta-category { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.cat-btn { padding: 8px 16px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface-raised); color: var(--text-secondary); font-family: var(--font-sans); font-size: 0.82rem; cursor: pointer; transition: all var(--transition); }
+.cat-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.insta-input textarea { width: 100%; min-height: 70px; padding: 16px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface-raised); color: var(--text); font-family: var(--font-sans); font-size: 0.92rem; line-height: 1.6; resize: vertical; }
+.insta-input textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+.insta-input textarea::placeholder { color: var(--text-muted); font-style: italic; }
+.insta-results { margin-top: 20px; padding-bottom: 40px; }
+.insta-result-card { background: var(--surface-raised); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 16px; margin-bottom: 10px; position: relative; }
+.insta-result-card .legend-text { font-size: 0.88rem; line-height: 1.6; color: var(--text); margin-bottom: 8px; white-space: pre-line; }
+.insta-result-card .legend-hashtags { font-size: 0.82rem; color: var(--accent); margin-bottom: 8px; word-break: break-word; }
+.insta-result-card .legend-tag { display: inline-block; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; margin-right: 4px; }
+.insta-result-card .legend-tag.question { background: #fef3c7; color: #92400e; }
+.insta-result-card .legend-tag.event { background: #dbeafe; color: #1e40af; }
+.copy-btn { position: absolute; top: 12px; right: 12px; background: var(--surface-muted); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 0.72rem; cursor: pointer; color: var(--text-muted); transition: all var(--transition); }
+.copy-btn:hover { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+
 /* ── Explore ── */
 .explore-header { padding: 24px 0 16px; }
 .explore-header h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; }
@@ -330,6 +349,7 @@ header nav { display: flex; gap: 6px; align-items: center; }
       <button class="icon-btn" title="Switch user" onclick="switchUser()" id="user-badge" style="font-size:0.75rem;font-weight:600;width:auto;padding:0 10px;border-radius:999px;background:var(--accent-light);color:var(--accent);"></button>
       <button class="icon-btn" title="Explore" onclick="showView('explore')">🧭</button>
       <button class="icon-btn" title="Business" onclick="showView('business')">💼</button>
+      <button class="icon-btn" title="Instagram" onclick="showView('insta')">📸</button>
       <button class="icon-btn" title="Patterns" onclick="showView('patterns')">🔍</button>
       <button class="icon-btn" title="Archive" onclick="showView('archive')">📋</button>
       <button class="icon-btn" title="Settings" onclick="openSettings()">⚙️</button>
@@ -405,6 +425,24 @@ header nav { display: flex; gap: 6px; align-items: center; }
     </div>
     <div class="section-label" id="biz-section-label">Recent — SEO / Website</div>
     <div class="biz-sessions sessions-list" id="biz-sessions-list"></div>
+  </div>
+
+  <!-- ═══ INSTAGRAM ═══ -->
+  <div id="view-insta" class="view">
+    <div class="insta-header"><h2>Instagram</h2></div>
+    <div class="insta-category" id="insta-cats">
+      <button class="cat-btn active" onclick="selectCat(this,'photo')">📷 Photo</button>
+      <button class="cat-btn" onclick="selectCat(this,'haiku')">🖋 Haiku</button>
+      <button class="cat-btn" onclick="selectCat(this,'food')">🍽 Food</button>
+      <button class="cat-btn" onclick="selectCat(this,'place')">📍 Place</button>
+    </div>
+    <div class="insta-input">
+      <textarea id="insta-desc" placeholder="Describe the post or give keywords... (eg: sunset terrace with wine glasses, haiku about autumn leaves, homemade tarte tatin, old stone fountain in the village)"></textarea>
+      <div class="dump-actions" style="margin-top:10px;">
+        <button class="btn-primary" id="btn-insta" onclick="generateInsta()" disabled>Generate</button>
+      </div>
+    </div>
+    <div class="insta-results" id="insta-results"></div>
   </div>
 
   <!-- ═══ EXPLORE ═══ -->
@@ -666,6 +704,7 @@ function showView(name) {
   else if (name === 'patterns') renderPatterns();
   else if (name === 'explore') renderLibrary();
   else if (name === 'business') renderBizSessions();
+  else if (name === 'insta') { /* static view, no render needed */ }
 }
 
 // ═══════════════════════════════════════════════════
@@ -1036,6 +1075,94 @@ function formatTime(ts) { return new Date(ts).toLocaleTimeString('en-GB',{hour:'
 function escHTML(s) { const el=document.createElement('span'); el.textContent=s||''; return el.innerHTML; }
 function formatMarkdown(text) { if(!text) return ''; return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/\n\n/g,'</p><p>').replace(/\n/g,'<br>').replace(/^/,'<p>').replace(/$/,'</p>'); }
 function showToast(msg) { const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
+
+// ═══════════════════════════════════════════════════
+// INSTAGRAM GENERATOR
+// ═══════════════════════════════════════════════════
+
+let instaCategory = 'photo';
+
+const instaDesc = document.getElementById('insta-desc');
+const btnInsta = document.getElementById('btn-insta');
+if (instaDesc) {
+  instaDesc.addEventListener('input', function() {
+    btnInsta.disabled = instaDesc.value.trim().length < 3;
+  });
+}
+
+function selectCat(btn, cat) {
+  document.querySelectorAll('.cat-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  instaCategory = cat;
+}
+
+const INSTA_PROMPT = 'Tu es un expert en contenu Instagram pour un B&B / lieu de vie en France. Tu connais les stratégies de visibilité organique Instagram.\n\nTa mission : proposer 10 options de LEGENDE Instagram en français pour un post.\n\nREGLES :\n- Toutes les legendes en FRANCAIS\n- Ton chaleureux, poétique, authentique. Pas corporate, pas fake.\n- Parmi les 10, exactement 3 doivent contenir une QUESTION pertinente qui invite les abonnés à commenter (pas une question bateau)\n- Chaque legende doit être accompagnée de 8-15 hashtags pertinents en français ET en anglais\n- IMPORTANT — Angle événementiel : cherche activement si la date actuelle correspond à un événement, une fête, une saison, une journée mondiale, un anniversaire de quelque chose, une tendance du moment. Si oui, intègre cet angle dans certaines légendes ET dans les hashtags (comme #30ans pour un anniversaire, #été2026, #fêtedelamusique, etc). Cet angle crée de la visibilité car les gens cherchent ces hashtags. Si aucun événement ne colle, ne force pas.\n- Varie les longueurs : certaines courtes (1-2 lignes), certaines plus développées (3-5 lignes)\n- Adapte le ton à la catégorie du post\n\nRéponds UNIQUEMENT en JSON valide :\n{\n  "legends": [\n    {\n      "text": "Le texte de la légende",\n      "hashtags": "#hashtag1 #hashtag2 #hashtag3",\n      "has_question": true,\n      "event_angle": "fête de la musique" ou null\n    }\n  ]\n}';
+
+async function generateInsta() {
+  if (!checkApiKey()) return;
+  var desc = instaDesc.value.trim();
+  if (desc.length < 3) return;
+
+  var container = document.getElementById('insta-results');
+  container.innerHTML = '<div class="generating"><div class="thinking"><div class="thinking-dots"><span></span><span></span><span></span></div> Rédaction en cours...</div></div>';
+  btnInsta.disabled = true;
+
+  var catLabels = { photo: 'Photo / Image', haiku: 'Haiku / Poésie', food: 'Food / Cuisine', place: 'Lieu / Place' };
+  var today = new Date();
+  var dateStr = today.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  var userMsg = 'Catégorie : ' + catLabels[instaCategory] + '\nDate : ' + dateStr + '\nDescription du post : ' + desc;
+
+  try {
+    var response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + state.settings.apiKey },
+      body: JSON.stringify({
+        model: state.settings.model,
+        messages: [
+          { role: 'system', content: INSTA_PROMPT },
+          { role: 'user', content: userMsg }
+        ],
+        temperature: 0.9,
+        max_tokens: 2500,
+        response_format: { type: 'json_object' }
+      })
+    });
+    if (!response.ok) throw new Error('API error ' + response.status);
+    var data = await response.json();
+    var raw = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content || '{}';
+    var parsed = JSON.parse(raw);
+
+    var html = '';
+    (parsed.legends || []).forEach(function(item, i) {
+      var tags = '';
+      if (item.has_question) tags += '<span class="legend-tag question">question</span>';
+      if (item.event_angle) tags += '<span class="legend-tag event">' + escHTML(item.event_angle) + '</span>';
+      var fullText = item.text + '\n\n' + item.hashtags;
+      html += '<div class="insta-result-card">';
+      html += '<button class="copy-btn" onclick="copyLegend(this, ' + i + ')">Copier</button>';
+      html += '<div class="legend-text">' + escHTML(item.text) + '</div>';
+      html += '<div class="legend-hashtags">' + escHTML(item.hashtags || '') + '</div>';
+      if (tags) html += '<div>' + tags + '</div>';
+      html += '<input type="hidden" class="legend-full" value="' + escHTML(fullText).replace(/"/g, '&quot;') + '">';
+      html += '</div>';
+    });
+
+    html += '<div style="margin-top:16px;"><button class="btn-secondary" onclick="generateInsta()">Regenerate</button></div>';
+    container.innerHTML = html;
+  } catch(e) {
+    container.innerHTML = '<div class="empty-state">' + e.message + '</div>';
+  }
+  btnInsta.disabled = false;
+}
+
+function copyLegend(btn, idx) {
+  var card = btn.parentElement;
+  var text = card.querySelector('.legend-text').textContent + '\n\n' + card.querySelector('.legend-hashtags').textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = 'Copié !';
+    setTimeout(function() { btn.textContent = 'Copier'; }, 1500);
+  });
+}
 
 // ═══════════════════════════════════════════════════
 // EXPLORE TAB
