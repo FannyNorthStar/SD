@@ -809,6 +809,10 @@ function renderMessage(msg) {
     return '<div class="message assistant"><div class="msg-bubble">' + formatMarkdown(msg.content) + '</div><div class="msg-time">' + formatTime(msg.timestamp) + '</div></div>';
   }
   var html = '<div class="message assistant"><div class="msg-bubble">' + formatMarkdown(parsed.message||'');
+  if (parsed.message) {
+    var safeMsgShort = escHTML((parsed.message||'').substring(0, 200)).replace(/'/g, '&#39;');
+    html += '<div style="text-align:right;margin-top:6px;"><button class="save-line-btn" style="opacity:0.25;font-size:0.72rem;" onclick="saveFromMessage(this)" data-type="' + saveType + '" title="Save this response">' + saveLabel + ' save response</button></div>';
+  }
   if (parsed.models && parsed.models.length) {
     html += '<div class="ctfar-cards">';
     parsed.models.forEach(function(m) {
@@ -1464,7 +1468,7 @@ async function generateQuestions() {
       html += '</div>';
     });
 
-    html += '<div class="gen-actions"><button class="btn-secondary" onclick="generateQuestions()">Regenerate</button></div></div>';
+    html += '<div class="gen-actions"><button class="btn-secondary" onclick="generateQuestions()">Regenerate</button><button class="btn-secondary" onclick="exportGenerated()">📄 Export</button></div></div>';
     container.innerHTML = html;
   } catch(e) {
     container.innerHTML = '<div class="empty-state">⚠️ ' + e.message + '</div>';
@@ -1526,6 +1530,21 @@ function createExploreSession(firstMessage, title) {
   showView('session');
   renderSession();
   getCoachResponse(session);
+}
+
+function exportGenerated() {
+  var container = document.getElementById('generated-questions');
+  var title = container.querySelector('h3');
+  var questions = container.querySelectorAll('.generated-q');
+  var text = 'GENERATED QUESTIONS\n' + '='.repeat(40) + '\n';
+  if (title) text += title.textContent + '\n\n';
+  questions.forEach(function(q, i) { text += '  ' + (i+1) + '. ' + q.textContent.trim() + '\n\n'; });
+  var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'generated-questions.txt';
+  a.click();
+  showToast('Questions exported!');
 }
 
 function exportLibrary() {
@@ -1680,6 +1699,17 @@ function saveLine(type, text) {
   state.saved.push({ type: type, text: text.replace(/&#39;/g, "'"), date: new Date().toISOString() });
   saveState();
   showToast(type === 'idea' ? 'Idea saved!' : 'Sentence saved!');
+}
+
+function saveFromMessage(btn) {
+  var bubble = btn.closest('.msg-bubble');
+  var allText = bubble.innerText || bubble.textContent || '';
+  // Remove the "save response" button text from the captured content
+  allText = allText.replace(/[⭐💡] save response/g, '').trim();
+  var trimmed = prompt('Edit before saving (keep what you want):', allText);
+  if (trimmed && trimmed.trim()) {
+    saveLine(btn.dataset.type, trimmed.trim());
+  }
 }
 
 function deleteSaved(idx) {
