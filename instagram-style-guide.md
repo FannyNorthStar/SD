@@ -41,8 +41,9 @@ Références de ton (tirées des newsletters) :
 1. **Ne jamais inventer de détails** non mentionnés dans le brief.
 2. **Question en premier** dans la légende (sauf si pas naturel).
 3. **Pas de redondance** avec le brief — le lecteur voit la photo.
-4. **Logique** — pas de mot répété, français naturel.
-5. **5 légendes**, 3 avec question. 1-2 phrases max.
+4. **VOUVOYER** — toujours "vous", JAMAIS "tu" ou "toi".
+5. **Accents corrects** — été pas ete, rivière pas riviere, préférez pas preferez.
+6. **5 légendes**, 3 avec question. 1-2 phrases max.
 
 ---
 
@@ -81,6 +82,12 @@ Références de ton (tirées des newsletters) :
 | "Le bonheur, c'est simple comme un repas entre amis. Et pour vous ?" | Liaison forcée | Le "et pour vous" n'est pas amené naturellement |
 | "Les derniers rayons de soleil, ça vous inspire quoi ?" | Question trop vague | Personne ne va répondre à ça |
 | "Le vélo attend patiemment la prochaine aventure" | Cringe | Les objets n'ont pas de sentiments |
+| "Les soirées estivales vont te manquer ?" | Tutoiement | JAMAIS tutoyer |
+| "On fait le bilan : potager ou rivière, ton préféré ?" | Tutoiement + corporate | "Faire le bilan" = ton corporate |
+| "L'été a fait la part belle au potager" | Magazine | Expression magazine |
+| "Dernière journée d'été avec un clin d'œil au potager" | Clin d'œil interdit | Jamais "clin d'œil" |
+| "Dernier jour d'été, souvenir de soirées amicales" | Chichiteux | Trop précieux |
+| "Les rivières de l'été en tête ?" | Chichiteux | Trop littéraire pour une question |
 | "On se remémore les baignades" | Chichiteux | "Se remémore" = trop précieux |
 | "Derniers rayons de soleil et bonne bouffe" | Vocabulaire faux | "Bouffe" n'est pas notre registre |
 | "Septembre et les légumes du potager s'invitent sur les blinis" | Cringe + extrapolation | Les légumes ne "s'invitent" nulle part |
@@ -89,7 +96,7 @@ Références de ton (tirées des newsletters) :
 
 ## Mots interdits
 
-instants, se remémore, éphémère, tendre, doux, merveilleux, magique, magnifique, bouffe, patiemment, s'éteindre, s'écourter, célébrer, s'inviter, se parer, capturer, caresser, moments partagés
+instants, se remémore, éphémère, tendre, doux, merveilleux, magique, magnifique, bouffe, patiemment, s'éteindre, s'écourter, célébrer, s'inviter, se parer, capturer, caresser, moments partagés, clin d'œil, estival/estivales, faire la part belle
 
 ## Structures interdites
 
@@ -97,6 +104,7 @@ instants, se remémore, éphémère, tendre, doux, merveilleux, magique, magnifi
 - "Les premiers frissons de..." 
 - "Une palette de..."
 - "Aux couleurs de..."
+- **Tutoiement** : tu, toi, ton, ta, tes — TOUJOURS vouvoyer
 - Tout ce qui sonne comme un magazine déco ou wellness
 
 ## Hashtags interdits
