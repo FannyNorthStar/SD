@@ -80,6 +80,20 @@ header nav { display: flex; gap: 6px; align-items: center; }
 .view { display: none; flex-direction: column; flex: 1; }
 .view.active { display: flex; }
 
+/* ── Save Buttons ── */
+.save-line-btn { background: none; border: none; cursor: pointer; font-size: 0.7rem; padding: 2px 4px; opacity: 0.3; transition: opacity var(--transition); margin-left: 6px; flex-shrink: 0; }
+.save-line-btn:hover { opacity: 1; }
+.ctfar-row { display: flex; align-items: flex-start; }
+.saved-header { padding: 24px 0 16px; display: flex; justify-content: space-between; align-items: center; }
+.saved-header h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; }
+.saved-tabs { display: flex; gap: 4px; margin-bottom: 16px; background: var(--surface-muted); border-radius: 999px; padding: 3px; }
+.saved-tab { flex: 1; padding: 8px 16px; border: none; border-radius: 999px; background: transparent; color: var(--text-secondary); font-family: var(--font-sans); font-size: 0.82rem; font-weight: 500; cursor: pointer; transition: all var(--transition); text-align: center; }
+.saved-tab.active { background: var(--surface-raised); color: var(--text); box-shadow: var(--shadow-sm); }
+.saved-item { background: var(--surface-raised); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 14px 40px 14px 16px; margin-bottom: 6px; font-size: 0.88rem; line-height: 1.5; position: relative; }
+.saved-item .delete-saved { position: absolute; top: 10px; right: 10px; background: none; border: none; cursor: pointer; font-size: 0.75rem; opacity: 0.3; }
+.saved-item .delete-saved:hover { opacity: 1; }
+.saved-item .saved-date { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
+
 /* ── User Picker ── */
 .user-picker {
   position: fixed; inset: 0; background: var(--bg); z-index: 500;
@@ -389,11 +403,23 @@ header nav { display: flex; gap: 6px; align-items: center; }
 
   <!-- ═══ ARCHIVE ═══ -->
   <div id="view-archive" class="view">
-    <div class="archive-header"><h2>Your sessions</h2></div>
-    <div class="archive-search">
-      <input type="text" placeholder="Search past sessions..." id="archive-search-input" oninput="renderArchive()">
+    <div class="saved-tabs">
+      <button class="saved-tab active" onclick="switchArchiveTab('sessions')">Sessions</button>
+      <button class="saved-tab" onclick="switchArchiveTab('sentences')">⭐ Good sentences</button>
+      <button class="saved-tab" onclick="switchArchiveTab('ideas')">💡 Good ideas</button>
     </div>
-    <div id="archive-list" class="sessions-list"></div>
+    <div id="archive-sessions" class="archive-pane">
+      <div class="archive-search">
+        <input type="text" placeholder="Search past sessions..." id="archive-search-input" oninput="renderArchive()">
+      </div>
+      <div id="archive-list" class="sessions-list"></div>
+    </div>
+    <div id="archive-sentences" class="archive-pane" style="display:none;">
+      <div id="saved-sentences-list"></div>
+    </div>
+    <div id="archive-ideas" class="archive-pane" style="display:none;">
+      <div id="saved-ideas-list"></div>
+    </div>
   </div>
 
   <!-- ═══ PATTERNS ═══ -->
@@ -437,6 +463,17 @@ header nav { display: flex; gap: 6px; align-items: center; }
       <button class="cat-btn" onclick="selectCat(this,'place')">📍 Place</button>
     </div>
     <div class="insta-input">
+      <div style="display:flex;gap:8px;margin-bottom:10px;">
+        <select id="insta-month" style="flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface-raised);color:var(--text);font-family:var(--font-sans);font-size:0.85rem;">
+          <option value="">Mois / saison (auto = aujourd'hui)</option>
+          <option value="janvier">Janvier</option><option value="février">Février</option><option value="mars">Mars</option>
+          <option value="avril">Avril</option><option value="mai">Mai</option><option value="juin">Juin</option>
+          <option value="juillet">Juillet</option><option value="août">Août</option><option value="septembre">Septembre</option>
+          <option value="octobre">Octobre</option><option value="novembre">Novembre</option><option value="décembre">Décembre</option>
+          <option value="printemps">🌸 Printemps</option><option value="été">☀️ Été</option>
+          <option value="automne">🍂 Automne</option><option value="hiver">❄️ Hiver</option>
+        </select>
+      </div>
       <textarea id="insta-desc" placeholder="Describe the post or give keywords... (eg: sunset terrace with wine glasses, haiku about autumn leaves, homemade tarte tatin, old stone fountain in the village)"></textarea>
       <div class="dump-actions" style="margin-top:10px;">
         <button class="btn-primary" id="btn-insta" onclick="generateInsta()" disabled>Generate</button>
@@ -474,6 +511,7 @@ header nav { display: flex; gap: 6px; align-items: center; }
     </div>
 
     <div id="explore-library" class="explore-pane">
+      <div style="text-align:right;margin-bottom:12px;"><button class="btn-secondary" onclick="exportLibrary()" style="font-size:0.78rem;">📄 Export questions</button></div>
       <div class="library-container" id="library-container"></div>
     </div>
   </div>
@@ -541,7 +579,7 @@ function getStorageKey() { return 'totd-' + currentUser; }
 function loadState() {
   try {
     const raw = localStorage.getItem(getStorageKey());
-    if (raw) { const s = JSON.parse(raw); Object.assign(state, { sessions: s.sessions||[], settings: {...state.settings,...s.settings}, patterns: s.patterns||null }); }
+    if (raw) { const s = JSON.parse(raw); Object.assign(state, { sessions: s.sessions||[], settings: {...state.settings,...s.settings}, patterns: s.patterns||null, saved: s.saved||[] }); }
   } catch(e) { console.warn('Load failed', e); }
 }
 function saveState() {
@@ -762,23 +800,35 @@ function renderSession() {
 }
 
 function renderMessage(msg) {
-  if (msg.role === 'user') return `<div class="message user"><div class="msg-bubble">${escHTML(msg.content)}</div><div class="msg-time">${formatTime(msg.timestamp)}</div></div>`;
-  let parsed = null;
+  var session = getCurrentSession();
+  var saveType = (session && session.mode === 'business') ? 'idea' : 'sentence';
+  var saveLabel = saveType === 'idea' ? '💡' : '⭐';
+  if (msg.role === 'user') return '<div class="message user"><div class="msg-bubble">' + escHTML(msg.content) + '</div><div class="msg-time">' + formatTime(msg.timestamp) + '</div></div>';
+  var parsed = null;
   try { parsed = typeof msg.parsed === 'object' ? msg.parsed : JSON.parse(msg.content); } catch(e) {
-    return `<div class="message assistant"><div class="msg-bubble">${formatMarkdown(msg.content)}</div><div class="msg-time">${formatTime(msg.timestamp)}</div></div>`;
+    return '<div class="message assistant"><div class="msg-bubble">' + formatMarkdown(msg.content) + '</div><div class="msg-time">' + formatTime(msg.timestamp) + '</div></div>';
   }
-  let html = `<div class="message assistant"><div class="msg-bubble">${formatMarkdown(parsed.message||'')}`;
-  if (parsed.models?.length) {
-    html += `<div class="ctfar-cards">`;
-    parsed.models.forEach(m => {
-      const type = m.type||'unintentional';
-      const label = m.label||(type==='unintentional'?'Current pattern':'Alternative perspective');
-      html += `<div class="ctfar-card ${type}"><div class="ctfar-card-header" onclick="toggleCard(this)">${escHTML(label)}<span class="toggle-arrow">▼</span></div><div class="ctfar-card-body"><div class="ctfar-row"><span class="ctfar-label">C</span><span class="ctfar-value">${escHTML(m.c||'')}</span></div><div class="ctfar-row"><span class="ctfar-label">T</span><span class="ctfar-value">${escHTML(m.t||'')}</span></div><div class="ctfar-row"><span class="ctfar-label">F</span><span class="ctfar-value">${escHTML(m.f||'')}</span></div><div class="ctfar-row"><span class="ctfar-label">A</span><span class="ctfar-value">${escHTML(m.a||'')}</span></div><div class="ctfar-row"><span class="ctfar-label">R</span><span class="ctfar-value">${escHTML(m.r||'')}</span></div></div></div>`;
+  var html = '<div class="message assistant"><div class="msg-bubble">' + formatMarkdown(parsed.message||'');
+  if (parsed.models && parsed.models.length) {
+    html += '<div class="ctfar-cards">';
+    parsed.models.forEach(function(m) {
+      var type = m.type||'unintentional';
+      var label = m.label||(type==='unintentional'?'Current pattern':'Alternative perspective');
+      html += '<div class="ctfar-card ' + type + '"><div class="ctfar-card-header" onclick="toggleCard(this)">' + escHTML(label) + '<span class="toggle-arrow">▼</span></div><div class="ctfar-card-body">';
+      ['c','t','f','a','r'].forEach(function(k) {
+        var val = escHTML(m[k]||'');
+        var safeVal = val.replace(/'/g, '&#39;');
+        html += '<div class="ctfar-row"><span class="ctfar-label">' + k.toUpperCase() + '</span><span class="ctfar-value">' + val + '</span><button class="save-line-btn" title="Save" onclick="saveLine(\'' + saveType + '\',\'' + k.toUpperCase() + ': ' + safeVal + '\')">' + saveLabel + '</button></div>';
+      });
+      html += '</div></div>';
     });
-    html += `</div>`;
+    html += '</div>';
   }
-  if (parsed.coaching_question) html += `<div class="coaching-question">${escHTML(parsed.coaching_question)}</div>`;
-  html += `</div><div class="msg-time">${formatTime(msg.timestamp)}</div></div>`;
+  if (parsed.coaching_question) {
+    var safeQ = escHTML(parsed.coaching_question).replace(/'/g, '&#39;');
+    html += '<div class="coaching-question">' + escHTML(parsed.coaching_question) + '<button class="save-line-btn" title="Save" onclick="saveLine(\'' + saveType + '\',\'' + safeQ + '\')">' + saveLabel + '</button></div>';
+  }
+  html += '</div><div class="msg-time">' + formatTime(msg.timestamp) + '</div></div>';
   return html;
 }
 
@@ -1096,7 +1146,7 @@ function selectCat(btn, cat) {
   instaCategory = cat;
 }
 
-const INSTA_PROMPT = 'Tu es un expert en contenu Instagram. Tu travailles pour deux comptes liés :\n\n1. @departementalesmagazine (3K+ abonnés) — "Le magazine de la beauté du quotidien. Ralentissez et prenez le temps de regarder autour de vous." Contenu : photographies contemplatives, haikus, poésie du quotidien, beauté des choses simples. Ton : poétique, lent, attentif, sensible. Pas influenceur. Pas lifestyle fake. Authenticité totale.\n\n2. @lerelaisduchienbleu — B&B végan dans une maison historique, Vallée du Lot. Bons petits plats, nature, patrimoine. Par Axel & Fanny.\n\nTa mission : proposer 10 options de LÉGENDE Instagram en français pour un post.\n\nSTYLE & TON :\n- Écriture littéraire mais accessible. Comme un ami poète, pas comme un copywriter.\n- Alterner entre contemplatif (observer le monde), intime (partager un moment), et ludique (jouer avec les mots)\n- Les haikus doivent respecter la structure 5-7-5 syllabes\n- Jamais de ton commercial, jamais de "découvrez notre offre", jamais de call to action agressif\n- Le ton de départementales magazine est celui de quelqu\'un qui s\'arrête pour regarder. Qui remarque ce que les autres ne voient pas. Qui trouve de la magie dans l\'ordinaire.\n\nRÈGLES :\n- Toutes les légendes en FRANÇAIS\n- Parmi les 10, exactement 3 doivent contenir une QUESTION qui invite à commenter — pas une question bateau mais une vraie question qui fait réfléchir ou sourire\n- Chaque légende avec 8-15 hashtags pertinents (mix français + anglais)\n- ANGLE ÉVÉNEMENTIEL (CRUCIAL pour la visibilité) : Vérifie si la date actuelle correspond à un événement, une fête, une saison, une journée mondiale, un anniversaire, une tendance. Exemple de succès : un haiku sur les anniversaires avec #30ans → énorme visibilité car les gens cherchent ce hashtag. Pense à : #40ans #50ans #mariage #rentrée #été2026 #automne #solstice #fêtedesmères #14juillet #vendanges #lune #équinoxe etc. Intègre ces angles dans les légendes ET les hashtags quand ça colle naturellement. Si rien ne colle, ne force pas.\n- Varie les longueurs : certaines très courtes (1-2 lignes poétiques), certaines plus développées (3-5 lignes avec une micro-histoire)\n- Adapte à la catégorie du post\n\nRéponds UNIQUEMENT en JSON valide :\n{\n  "legends": [\n    {\n      "text": "Le texte de la légende",\n      "hashtags": "#hashtag1 #hashtag2 #hashtag3",\n      "has_question": true,\n      "event_angle": "nom de l\'événement" ou null\n    }\n  ]\n}';
+const INSTA_PROMPT = 'Tu es un expert en contenu Instagram. Tu travailles pour le compte @departementalesmagazine (3K+ abonnés) — "Le magazine de la beauté du quotidien."\n\nCOMPTE LIÉ : @lerelaisduchienbleu — B&B végan, maison historique, Vallée du Lot. Par Axel & Fanny.\n\nLE TON DE CE COMPTE (CRUCIAL — à respecter absolument) :\nCe compte ne fait PAS du lifestyle doux ou de la poésie jolie. C\'est un regard LUCIDE et TENDRE sur le réel. Comme un ami poète qui remarque ce que les autres ne voient pas — y compris ce qui est drôle, étrange, ou inconfortable.\n\nCaractéristiques du ton :\n- Observation précise du quotidien : un vers dans la cerise, un vieux monsieur qui fait sonner un bol tibétain, des jambes qui brûlent en montée à vélo\n- Haikus : crus, observateurs, parfois drôles, parfois sombres. Style : "Saoul / assis sur un parking / le jour se lève." ou "Dans les cheveux blancs / de la vieille dame / une coccinelle." — PAS de haikus mignons ou inspirationnels\n- Photos argentiques, réelles, pas retouchées, pas posées. Beauté de l\'ordinaire, pas du mode.\n- Liberté de ton : peut parler d\'alcool, de politique, de critique sociale, du plaisir d\'un supermarché asiatique\n- Ancrage dans le territoire : Vallée du Lot, Aveyron, mais aussi voyages à vélo, Pays-Bas, marchés\n- Anti-fake : jamais de positivité toxique, jamais de "découvrez notre offre", jamais de ton influenceur\n- Contemplation active : ralentir, regarder, s\'arrêter — mais pas dans un sens new-age, plutôt comme quelqu\'un qui prend le temps de vivre intensément\n\nTA MISSION : proposer 10 options de LÉGENDE Instagram en français pour un post.\n\nRÈGLES :\n- Toutes les légendes en FRANÇAIS\n- Parmi les 10, exactement 3 doivent contenir une QUESTION qui invite à commenter — pas une question bateau mais une vraie question qui fait réfléchir, sourire, ou partager une expérience\n- Chaque légende avec 8-15 hashtags (mix FR + EN)\n- ANGLE ÉVÉNEMENTIEL (important pour visibilité) : la date du jour est donnée. Cherche activement : fêtes, saisons, journées mondiales, anniversaires, tendances. Exemple de succès : un haiku sur les anniversaires avec #30ans → énorme visibilité. Pense à #40ans #50ans #mariage #rentrée #automne #solstice #vendanges etc. Intègre quand ça colle naturellement.\n- Varie les longueurs : certaines très courtes (1-2 lignes comme un haiku), certaines plus développées (3-5 lignes, une micro-histoire ou observation)\n- Pour les haikus : structure 5-7-5 syllabes, ton observateur, ancré dans le concret\n- Adapte à la catégorie du post\n\nRéponds UNIQUEMENT en JSON valide :\n{\n  "legends": [\n    {\n      "text": "Le texte de la légende",\n      "hashtags": "#hashtag1 #hashtag2 #hashtag3",\n      "has_question": true,\n      "event_angle": "nom de l\'événement" ou null\n    }\n  ]\n}';
 
 async function generateInsta() {
   if (!checkApiKey()) return;
@@ -1110,7 +1160,9 @@ async function generateInsta() {
   var catLabels = { photo: 'Photo / Image', haiku: 'Haiku / Poésie', food: 'Food / Cuisine', place: 'Lieu / Place' };
   var today = new Date();
   var dateStr = today.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-  var userMsg = 'Catégorie : ' + catLabels[instaCategory] + '\nDate : ' + dateStr + '\nDescription du post : ' + desc;
+  var monthPick = document.getElementById('insta-month').value;
+  var timeContext = monthPick ? 'Temporalité choisie : ' + monthPick : 'Date du jour : ' + dateStr;
+  var userMsg = 'Catégorie : ' + catLabels[instaCategory] + '\n' + timeContext + '\nDescription du post : ' + desc;
 
   try {
     var response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -1476,6 +1528,21 @@ function createExploreSession(firstMessage, title) {
   getCoachResponse(session);
 }
 
+function exportLibrary() {
+  var text = 'THOUGHTS OF THE DAY — QUESTION LIBRARY\n' + '='.repeat(50) + '\n\n';
+  QUESTION_LIBRARY.forEach(function(topic) {
+    text += topic.icon + ' ' + topic.topic.toUpperCase() + '\n' + '-'.repeat(40) + '\n';
+    topic.questions.forEach(function(q) { text += '  • ' + q + '\n'; });
+    text += '\n';
+  });
+  var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'question-library.txt';
+  a.click();
+  showToast('Questions exported!');
+}
+
 // ═══════════════════════════════════════════════════
 // BUSINESS TAB
 // ═══════════════════════════════════════════════════
@@ -1602,6 +1669,50 @@ function startBizSession() {
   showView('session');
   renderSession();
   getCoachResponse(session);
+}
+
+// ═══════════════════════════════════════════════════
+// SAVED ITEMS (Good Sentences / Good Ideas)
+// ═══════════════════════════════════════════════════
+
+function saveLine(type, text) {
+  if (!state.saved) state.saved = [];
+  state.saved.push({ type: type, text: text.replace(/&#39;/g, "'"), date: new Date().toISOString() });
+  saveState();
+  showToast(type === 'idea' ? 'Idea saved!' : 'Sentence saved!');
+}
+
+function deleteSaved(idx) {
+  if (!state.saved) return;
+  state.saved.splice(idx, 1);
+  saveState();
+  renderSavedItems(state._currentSavedTab || 'sentences');
+}
+
+function switchArchiveTab(tab) {
+  document.querySelectorAll('.saved-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.archive-pane').forEach(function(p) { p.style.display = 'none'; });
+  var tabs = document.querySelectorAll('.saved-tab');
+  if (tab === 'sessions') { tabs[0].classList.add('active'); document.getElementById('archive-sessions').style.display = 'block'; renderArchive(); }
+  else if (tab === 'sentences') { tabs[1].classList.add('active'); document.getElementById('archive-sentences').style.display = 'block'; renderSavedItems('sentence'); }
+  else { tabs[2].classList.add('active'); document.getElementById('archive-ideas').style.display = 'block'; renderSavedItems('idea'); }
+  state._currentSavedTab = tab;
+}
+
+function renderSavedItems(type) {
+  var items = (state.saved || []).filter(function(s) { return s.type === type; });
+  var containerId = type === 'idea' ? 'saved-ideas-list' : 'saved-sentences-list';
+  var c = document.getElementById(containerId);
+  if (!items.length) {
+    var emoji = type === 'idea' ? '💡' : '⭐';
+    var label = type === 'idea' ? 'ideas' : 'sentences';
+    c.innerHTML = '<div class="empty-state"><span class="empty-icon">' + emoji + '</span>No saved ' + label + ' yet. Tap ' + emoji + ' on any line in a session to save it here.</div>';
+    return;
+  }
+  c.innerHTML = items.map(function(item, i) {
+    var realIdx = (state.saved || []).indexOf(item);
+    return '<div class="saved-item">' + escHTML(item.text) + '<div class="saved-date">' + formatDate(new Date(item.date)) + '</div><button class="delete-saved" onclick="deleteSaved(' + realIdx + ')">✕</button></div>';
+  }).join('');
 }
 
 // ═══════════════════════════════════════════════════
