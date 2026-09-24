@@ -121,7 +121,8 @@ header nav .icon-btn { flex-shrink: 0; }
 .gs-count { font-size: 0.75rem; color: var(--text-muted); }
 .gs-controls { display: flex; gap: 8px; margin: 8px 0 10px; flex-wrap: wrap; }
 .gs-controls select, .gs-controls input { font-family: var(--font-sans); font-size: 0.88rem; color: var(--text); background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 12px; }
-.gs-controls select { flex: 0 1 220px; min-width: 0; }
+.gs-controls select { flex: 1 1 150px; min-width: 0; }
+.gs-controls #gs-src { flex: 0 1 170px; }
 .gs-controls input { flex: 1 1 220px; min-width: 0; }
 .gs-controls input:focus, .gs-controls select:focus { outline: none; border-color: var(--accent); }
 .gs-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
@@ -575,6 +576,7 @@ header nav .icon-btn { flex-shrink: 0; }
     <div class="gs-header"><h2>Good sentences</h2><span class="gs-count" id="gs-count"></span></div>
     <div class="gs-controls">
       <select id="gs-cat" onchange="gsSetCat(this.value)"><option value="all">All themes</option></select>
+      <select id="gs-src" onchange="gsSetSrc(this.value)"><option value="all">All sources</option><option value="mine">My sentences</option><option value="inspired">Coaches &amp; authors</option></select>
       <input type="search" id="gs-q" placeholder="Search a situation: tired, fear, clients, famille…" oninput="gsSetQuery(this.value)">
     </div>
     <div class="gs-chips" id="gs-chips"></div>
@@ -1864,8 +1866,9 @@ function renderSavedItems(type) {
 // ═══════════════════════════════════════════════════
 // GOOD SENTENCES (library in sentences.json + saved sentences auto-classified with OpenAI)
 // ═══════════════════════════════════════════════════
-var GS = { lib: null, cat: 'all', q: '', loading: false, classifying: false };
-var GS_CHIPS = ['motivation', 'fatigue', 'procrastination', 'peur', 'doute', 'travail', 'temps', 'échec', 'perfectionnisme', 'argent', 'clients', 'famille', 'regard des autres', 'présence'];
+var GS = { lib: null, cat: 'all', src: 'all', q: '', loading: false, classifying: false };
+function gsIsMine(s) { return s.origin === 'saved' || s.source === 'perso' || s.source === 'notes'; }
+var GS_CHIPS = ['motivation', 'fatigue', 'repos', 'distraction', 'procrastination', 'peur', 'doute', 'travail', 'temps', 'échec', 'perfectionnisme', 'argent', 'clients', 'famille', 'regard des autres', 'présence'];
 
 function gsNorm(s) { return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
 function gsCatInfo(id) { return (GS.lib && GS.lib.categories.find(function(c) { return c.id === id; })) || null; }
@@ -1917,6 +1920,8 @@ function gsFiltered() {
   var words = gsNorm(GS.q).split(/\s+/).filter(function(w) { return w.length > 0; });
   return gsAll().filter(function(s) {
     if (GS.cat !== 'all' && s.category !== GS.cat) return false;
+    if (GS.src === 'mine' && !gsIsMine(s)) return false;
+    if (GS.src === 'inspired' && gsIsMine(s)) return false;
     if (!words.length) return true;
     var h = gsHay(s);
     return words.every(function(w) { return h.indexOf(w) !== -1; });
@@ -1929,7 +1934,6 @@ function gsItemHTML(s) {
   var meta = [];
   if (cat && (GS.cat === 'all') && (GS.q || s.origin === 'saved')) meta.push(cat.emoji + ' ' + cat.label);
   if (s.origin === 'saved') meta.push(s.category ? 'saved from a session' : 'saved · not classified yet');
-  else if (s.source === 'jody') meta.push(GS.lib.sources.jody);
   return '<div class="' + cls + '">' + escHTML(s.text) +
     (s.note ? '<div class="gs-note">' + escHTML(s.note) + '</div>' : '') +
     (meta.length ? '<div class="gs-meta">' + escHTML(meta.join(' · ')) + '</div>' : '') + '</div>';
@@ -1948,7 +1952,7 @@ function gsRender() {
   var list = document.getElementById('gs-list');
   if (!items.length) { list.innerHTML = '<div class="gs-empty">No sentence matches. Try another word, or another theme.</div>'; return; }
   var html = '';
-  if (GS.cat === 'all' && !GS.q) {
+  if (GS.cat === 'all' && !GS.q) {  // grouped view
     var uns = items.filter(function(s) { return s.origin === 'saved' && !s.category; });
     if (uns.length) html += '<div class="gs-group-title">To sort</div>' + uns.map(gsItemHTML).join('');
     GS.lib.categories.forEach(function(c) {
@@ -1963,6 +1967,7 @@ function gsRender() {
 }
 
 function gsSetCat(v) { GS.cat = v; document.getElementById('gs-random-box').innerHTML = ''; gsRender(); }
+function gsSetSrc(v) { GS.src = v; document.getElementById('gs-random-box').innerHTML = ''; gsRender(); }
 function gsSetQuery(v) {
   GS.q = v;
   document.querySelectorAll('.gs-chip').forEach(function(c) { c.classList.toggle('active', gsNorm(c.dataset.k) === gsNorm(v)); });

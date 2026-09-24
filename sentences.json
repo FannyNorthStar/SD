@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "categories": [
   {
    "id": "action",
@@ -83,12 +83,31 @@
   "integrite": "intégrité integrity valeurs values honnêteté principes",
   "abondance": "abondance enough assez scarcity manque chance gratitude",
   "corps": "corps body sport mouvement movement exercise",
-  "idees": "idées ideas créativité creativity écriture writing créer create"
+  "idees": "idées ideas créativité creativity écriture writing créer create",
+  "distraction": "distraction scroll scrolling phone téléphone écran screen buffering spirale spiral absorbée absorbed se perdre internet urge urges envie compulsive",
+  "repos": "repos rest pause break se reposer recharger recharge douceur gentle"
  },
  "sources": {
   "perso": "My thoughts",
-  "notes": "Notes",
-  "jody": "Inspired by Jody Moore"
+  "notes": "My notes",
+  "jody": "Inspired by Jody Moore",
+  "castillo": "Inspired by Brooke Castillo",
+  "leigh": "Inspired by Tonya Leigh",
+  "aron": "Inspired by Bev Aron",
+  "katie": "Inspired by Byron Katie",
+  "neff": "Inspired by Kristin Neff",
+  "brach": "Inspired by Tara Brach",
+  "clear": "Inspired by James Clear",
+  "pressfield": "Inspired by Steven Pressfield",
+  "burkeman": "Inspired by Oliver Burkeman",
+  "stoics": "Inspired by the Stoics",
+  "brown": "Inspired by Brené Brown",
+  "robbins": "Inspired by Mel Robbins",
+  "loewentheil": "Inspired by Kara Loewentheil",
+  "boehman": "Inspired by Stacey Boehman",
+  "beck": "Inspired by Martha Beck",
+  "lamott": "Inspired by Anne Lamott",
+  "more": "Coaching wisdom"
  },
  "sentences": [
   {
@@ -177,7 +196,8 @@
    "category": "fun",
    "tags": [
     "travail",
-    "plaisir"
+    "plaisir",
+    "distraction"
    ],
    "note": "",
    "source": "perso"
@@ -232,7 +252,8 @@
    "category": "action",
    "tags": [
     "action",
-    "procrastination"
+    "procrastination",
+    "distraction"
    ],
    "note": "",
    "source": "perso"
@@ -277,7 +298,8 @@
     "motivation",
     "procrastination",
     "difficulte",
-    "fatigue"
+    "fatigue",
+    "distraction"
    ],
    "note": "",
    "source": "perso"
@@ -334,7 +356,8 @@
    "tags": [
     "presence",
     "peur",
-    "fatigue"
+    "fatigue",
+    "repos"
    ],
    "note": "",
    "source": "perso"
@@ -770,7 +793,8 @@
    "category": "action",
    "tags": [
     "travail",
-    "decision"
+    "decision",
+    "distraction"
    ],
    "note": "",
    "source": "perso"
@@ -782,7 +806,8 @@
    "tags": [
     "difficulte",
     "procrastination",
-    "motivation"
+    "motivation",
+    "distraction"
    ],
    "note": "",
    "source": "perso"
@@ -804,7 +829,8 @@
    "category": "ownback",
    "tags": [
     "soutien",
-    "fatigue"
+    "fatigue",
+    "repos"
    ],
    "note": "",
    "source": "perso"
@@ -936,7 +962,8 @@
    "category": "presence",
    "tags": [
     "presence",
-    "plaisir"
+    "plaisir",
+    "repos"
    ],
    "note": "",
    "source": "perso"
@@ -1412,7 +1439,8 @@
    "tags": [
     "temps",
     "peur",
-    "fatigue"
+    "fatigue",
+    "repos"
    ],
    "note": "",
    "source": "jody"
@@ -1813,6 +1841,953 @@
    ],
    "note": "",
    "source": "jody"
+  },
+  {
+   "id": "s158",
+   "text": "Circumstances are neutral. It's my thought about them that hurts or helps",
+   "category": "presence",
+   "tags": [
+    "emotions",
+    "doute",
+    "peur"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s159",
+   "text": "My thoughts create my feelings, and I can choose new thoughts",
+   "category": "presence",
+   "tags": [
+    "emotions",
+    "doute"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s160",
+   "text": "My results are always evidence of what I've been thinking",
+   "category": "action",
+   "tags": [
+    "decision",
+    "doute"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s161",
+   "text": "Nothing has gone wrong here. This is just the human part of life",
+   "category": "presence",
+   "tags": [
+    "emotions",
+    "difficulte",
+    "echec"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s162",
+   "text": "An urge is just a feeling asking for attention. I can let it be there without obeying it",
+   "category": "presence",
+   "tags": [
+    "distraction",
+    "emotions",
+    "procrastination"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s163",
+   "text": "When I reach for my phone, I ask myself: what am I trying not to feel?",
+   "category": "presence",
+   "tags": [
+    "distraction",
+    "emotions",
+    "procrastination"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s164",
+   "text": "Every time I buffer, I trade the life I want for a few minutes of relief",
+   "category": "action",
+   "tags": [
+    "distraction",
+    "procrastination"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s165",
+   "text": "Other people don't have to follow my manual for me to be okay",
+   "category": "others",
+   "tags": [
+    "regard",
+    "famille",
+    "limites"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s166",
+   "text": "People get to be exactly who they are, and so do I",
+   "category": "others",
+   "tags": [
+    "famille",
+    "regard",
+    "limites"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s167",
+   "text": "I'm willing to fail my way to what I want",
+   "category": "failure",
+   "tags": [
+    "echec",
+    "reves"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s168",
+   "text": "I keep taking action until the result shows up, not until I feel like stopping",
+   "category": "action",
+   "tags": [
+    "discipline",
+    "difficulte",
+    "motivation"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s169",
+   "text": "A feeling is just a sensation in my body. I can feel anything",
+   "category": "presence",
+   "tags": [
+    "emotions",
+    "peur"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s170",
+   "text": "The worst that can happen is a feeling, and I can handle feelings",
+   "category": "presence",
+   "tags": [
+    "peur",
+    "emotions",
+    "action"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s171",
+   "text": "I can hold myself accountable without beating myself up",
+   "category": "ownback",
+   "tags": [
+    "soutien",
+    "echec"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s172",
+   "text": "Believing is a skill, and I practice it on purpose",
+   "category": "dreams",
+   "tags": [
+    "doute",
+    "reves"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s173",
+   "text": "I don't wait to feel motivated. I honor my calendar",
+   "category": "time",
+   "tags": [
+    "planning",
+    "motivation",
+    "discipline",
+    "procrastination"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s174",
+   "text": "Overwhelm is a thought, not a fact about my to-do list",
+   "category": "time",
+   "tags": [
+    "temps",
+    "travail",
+    "peur"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s175",
+   "text": "\"I don't know\" is a thought I can put down. I can decide what I think",
+   "category": "action",
+   "tags": [
+    "doute",
+    "decision"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s176",
+   "text": "My future self is already proud of what I'm about to do",
+   "category": "dreams",
+   "tags": [
+    "motivation",
+    "reves"
+   ],
+   "note": "",
+   "source": "castillo"
+  },
+  {
+   "id": "s177",
+   "text": "I try on new thoughts like new clothes, and keep the ones that suit the woman I'm becoming",
+   "category": "dreams",
+   "tags": [
+    "doute",
+    "reves"
+   ],
+   "note": "",
+   "source": "leigh"
+  },
+  {
+   "id": "s178",
+   "text": "What would my future self do right now? Then I do that",
+   "category": "dreams",
+   "tags": [
+    "decision",
+    "action",
+    "procrastination"
+   ],
+   "note": "",
+   "source": "leigh"
+  },
+  {
+   "id": "s179",
+   "text": "My future self is wise. I can ask her",
+   "category": "dreams",
+   "tags": [
+    "doute",
+    "decision"
+   ],
+   "note": "",
+   "source": "leigh"
+  },
+  {
+   "id": "s180",
+   "text": "I'm writing my after story, not rereading my before story",
+   "category": "dreams",
+   "tags": [
+    "echec",
+    "reves"
+   ],
+   "note": "",
+   "source": "leigh"
+  },
+  {
+   "id": "s181",
+   "text": "It's never too late to start from exactly where I am",
+   "category": "dreams",
+   "tags": [
+    "temps",
+    "reves",
+    "echec"
+   ],
+   "note": "",
+   "source": "leigh"
+  },
+  {
+   "id": "s182",
+   "text": "The energy I bring matters more than how many things I check off",
+   "category": "presence",
+   "tags": [
+    "travail",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "leigh"
+  },
+  {
+   "id": "s183",
+   "text": "I decide what \"enough\" is, and I let it be enough",
+   "category": "money",
+   "tags": [
+    "abondance",
+    "argent",
+    "presence"
+   ],
+   "note": "",
+   "source": "leigh"
+  },
+  {
+   "id": "s184",
+   "text": "I can be tender with the scared little girl in me, and still lead",
+   "category": "ownback",
+   "tags": [
+    "peur",
+    "soutien"
+   ],
+   "note": "",
+   "source": "leigh"
+  },
+  {
+   "id": "s185",
+   "text": "Beauty isn't reserved for special occasions. I can elevate an ordinary day",
+   "category": "presence",
+   "tags": [
+    "presence",
+    "plaisir"
+   ],
+   "note": "",
+   "source": "leigh"
+  },
+  {
+   "id": "s186",
+   "text": "My surroundings can remind me who I'm becoming",
+   "category": "presence",
+   "tags": [
+    "presence",
+    "reves"
+   ],
+   "note": "",
+   "source": "leigh"
+  },
+  {
+   "id": "s187",
+   "text": "Each month is a fresh reset, not a verdict on the last one",
+   "category": "time",
+   "tags": [
+    "planning",
+    "echec"
+   ],
+   "note": "",
+   "source": "leigh"
+  },
+  {
+   "id": "s188",
+   "text": "I become her first, and then I create it",
+   "category": "dreams",
+   "tags": [
+    "reves",
+    "doute"
+   ],
+   "note": "",
+   "source": "leigh"
+  },
+  {
+   "id": "s189",
+   "text": "I always make sense. Even my hardest reactions have a reason",
+   "category": "ownback",
+   "tags": [
+    "soutien",
+    "emotions"
+   ],
+   "note": "",
+   "source": "aron"
+  },
+  {
+   "id": "s190",
+   "text": "I can witness myself with compassion instead of judgment",
+   "category": "ownback",
+   "tags": [
+    "soutien",
+    "emotions",
+    "echec"
+   ],
+   "note": "",
+   "source": "aron"
+  },
+  {
+   "id": "s191",
+   "text": "I hold myself softly, especially when it's hard",
+   "category": "ownback",
+   "tags": [
+    "soutien",
+    "fatigue",
+    "difficulte",
+    "repos"
+   ],
+   "note": "",
+   "source": "aron"
+  },
+  {
+   "id": "s192",
+   "text": "I believe on purpose",
+   "category": "dreams",
+   "tags": [
+    "doute",
+    "decision"
+   ],
+   "note": "",
+   "source": "aron"
+  },
+  {
+   "id": "s193",
+   "text": "Ordinary moments turn magical when I choose what to believe about them",
+   "category": "presence",
+   "tags": [
+    "presence",
+    "plaisir"
+   ],
+   "note": "",
+   "source": "aron"
+  },
+  {
+   "id": "s194",
+   "text": "Every human is inherently lovable, including me, including them",
+   "category": "others",
+   "tags": [
+    "famille",
+    "regard",
+    "soutien"
+   ],
+   "note": "",
+   "source": "aron"
+  },
+  {
+   "id": "s195",
+   "text": "I can tell the truth and stay kind",
+   "category": "others",
+   "tags": [
+    "limites",
+    "famille",
+    "integrite"
+   ],
+   "note": "",
+   "source": "aron"
+  },
+  {
+   "id": "s196",
+   "text": "I can decide now how I want to feel later",
+   "category": "presence",
+   "tags": [
+    "emotions",
+    "decision"
+   ],
+   "note": "",
+   "source": "aron"
+  },
+  {
+   "id": "s197",
+   "text": "Loving myself makes it easier to love the people around me",
+   "category": "ownback",
+   "tags": [
+    "soutien",
+    "famille"
+   ],
+   "note": "",
+   "source": "aron"
+  },
+  {
+   "id": "s198",
+   "text": "I don't have to fix a feeling. I can let it move through me",
+   "category": "presence",
+   "tags": [
+    "emotions"
+   ],
+   "note": "",
+   "source": "aron"
+  },
+  {
+   "id": "s199",
+   "text": "What I want is on the other side of some discomfort, and I'm willing to cross",
+   "category": "failure",
+   "tags": [
+    "difficulte",
+    "emotions",
+    "reves"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s200",
+   "text": "Being kind doesn't mean going along with everything",
+   "category": "others",
+   "tags": [
+    "limites",
+    "famille",
+    "integrite"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s201",
+   "text": "Other people's comfort doesn't outrank my integrity",
+   "category": "others",
+   "tags": [
+    "limites",
+    "integrite",
+    "famille",
+    "regard"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s202",
+   "text": "Reaching the goal won't make me happier than I let myself be now, so I enjoy the way there",
+   "category": "fun",
+   "tags": [
+    "plaisir",
+    "reves"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s203",
+   "text": "I can hold my goals playfully",
+   "category": "fun",
+   "tags": [
+    "plaisir",
+    "reves",
+    "motivation"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s204",
+   "text": "Money reflects the value I create, not my worth",
+   "category": "money",
+   "tags": [
+    "argent",
+    "business",
+    "doute"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s205",
+   "text": "Jealousy shows me what I want. It's information, not a verdict",
+   "category": "others",
+   "tags": [
+    "comparaison",
+    "emotions",
+    "reves"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s206",
+   "text": "Balance is something I choose, not something I lack",
+   "category": "time",
+   "tags": [
+    "temps",
+    "travail",
+    "famille"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s207",
+   "text": "When I mess up, I clean it up and keep going",
+   "category": "failure",
+   "tags": [
+    "echec"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s208",
+   "text": "I don't need to fit in to belong to myself",
+   "category": "others",
+   "tags": [
+    "regard",
+    "comparaison",
+    "soutien"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s209",
+   "text": "I'm allowed to want what I want",
+   "category": "dreams",
+   "tags": [
+    "reves",
+    "limites"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s210",
+   "text": "Is this thought true? Can I really know that it is?",
+   "category": "ownback",
+   "tags": [
+    "doute",
+    "peur"
+   ],
+   "note": "",
+   "source": "katie"
+  },
+  {
+   "id": "s211",
+   "text": "Arguing with what already happened only hurts me",
+   "category": "presence",
+   "tags": [
+    "emotions",
+    "famille"
+   ],
+   "note": "",
+   "source": "katie"
+  },
+  {
+   "id": "s212",
+   "text": "Who would I be if I couldn't think this thought?",
+   "category": "ownback",
+   "tags": [
+    "doute",
+    "peur",
+    "emotions"
+   ],
+   "note": "",
+   "source": "katie"
+  },
+  {
+   "id": "s213",
+   "text": "I talk to myself the way I'd talk to a friend I love",
+   "category": "ownback",
+   "tags": [
+    "soutien",
+    "echec",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "neff"
+  },
+  {
+   "id": "s214",
+   "text": "Struggling is part of being human. I'm not alone in this",
+   "category": "presence",
+   "tags": [
+    "emotions",
+    "difficulte"
+   ],
+   "note": "",
+   "source": "neff"
+  },
+  {
+   "id": "s215",
+   "text": "Recognize, allow, investigate, nurture: I can meet whatever I feel",
+   "category": "presence",
+   "tags": [
+    "emotions"
+   ],
+   "note": "",
+   "source": "brach"
+  },
+  {
+   "id": "s216",
+   "text": "I can pause before I react",
+   "category": "presence",
+   "tags": [
+    "presence",
+    "emotions",
+    "famille"
+   ],
+   "note": "",
+   "source": "brach"
+  },
+  {
+   "id": "s217",
+   "text": "Every action is a vote for the person I'm becoming",
+   "category": "action",
+   "tags": [
+    "discipline",
+    "reves"
+   ],
+   "note": "",
+   "source": "clear"
+  },
+  {
+   "id": "s218",
+   "text": "My systems will carry me further than my goals",
+   "category": "action",
+   "tags": [
+    "planning",
+    "discipline"
+   ],
+   "note": "",
+   "source": "clear"
+  },
+  {
+   "id": "s219",
+   "text": "Missing once is human. I don't miss twice",
+   "category": "action",
+   "tags": [
+    "discipline",
+    "echec"
+   ],
+   "note": "",
+   "source": "clear"
+  },
+  {
+   "id": "s220",
+   "text": "When my energy is low, I do the two-minute version",
+   "category": "action",
+   "tags": [
+    "fatigue",
+    "procrastination",
+    "discipline",
+    "repos"
+   ],
+   "note": "",
+   "source": "clear"
+  },
+  {
+   "id": "s221",
+   "text": "Resistance is loudest right before the work that matters most",
+   "category": "action",
+   "tags": [
+    "procrastination",
+    "difficulte"
+   ],
+   "note": "",
+   "source": "pressfield"
+  },
+  {
+   "id": "s222",
+   "text": "I show up whether I feel inspired or not",
+   "category": "action",
+   "tags": [
+    "motivation",
+    "travail",
+    "discipline"
+   ],
+   "note": "",
+   "source": "pressfield"
+  },
+  {
+   "id": "s223",
+   "text": "I will never get it all done, and that's freeing",
+   "category": "time",
+   "tags": [
+    "temps",
+    "travail"
+   ],
+   "note": "",
+   "source": "burkeman"
+  },
+  {
+   "id": "s224",
+   "text": "I choose what to neglect, on purpose",
+   "category": "time",
+   "tags": [
+    "planning",
+    "temps",
+    "travail"
+   ],
+   "note": "",
+   "source": "burkeman"
+  },
+  {
+   "id": "s225",
+   "text": "My time is finite, so I spend it on what truly matters",
+   "category": "time",
+   "tags": [
+    "temps",
+    "reves"
+   ],
+   "note": "",
+   "source": "burkeman"
+  },
+  {
+   "id": "s226",
+   "text": "I focus on what's within my control and release the rest",
+   "category": "presence",
+   "tags": [
+    "peur",
+    "emotions"
+   ],
+   "note": "",
+   "source": "stoics"
+  },
+  {
+   "id": "s227",
+   "text": "The obstacle is part of the path",
+   "category": "failure",
+   "tags": [
+    "difficulte"
+   ],
+   "note": "",
+   "source": "stoics"
+  },
+  {
+   "id": "s228",
+   "text": "Being clear is the kind thing to do",
+   "category": "others",
+   "tags": [
+    "limites",
+    "famille"
+   ],
+   "note": "",
+   "source": "brown"
+  },
+  {
+   "id": "s229",
+   "text": "When courage and comfort compete, I pick courage",
+   "category": "action",
+   "tags": [
+    "peur",
+    "action"
+   ],
+   "note": "",
+   "source": "brown"
+  },
+  {
+   "id": "s230",
+   "text": "Let them. They'll do what they do, and I'll do what's right for me",
+   "category": "others",
+   "tags": [
+    "regard",
+    "famille",
+    "limites"
+   ],
+   "note": "",
+   "source": "robbins"
+  },
+  {
+   "id": "s231",
+   "text": "5-4-3-2-1: I move before my brain talks me out of it",
+   "category": "action",
+   "tags": [
+    "procrastination",
+    "motivation",
+    "action"
+   ],
+   "note": "",
+   "source": "robbins"
+  },
+  {
+   "id": "s232",
+   "text": "I don't have to leap to a positive thought. A neutral one is enough for today",
+   "category": "ownback",
+   "tags": [
+    "doute",
+    "emotions"
+   ],
+   "note": "",
+   "source": "loewentheil"
+  },
+  {
+   "id": "s233",
+   "text": "I can climb to a new belief one small step at a time",
+   "category": "dreams",
+   "tags": [
+    "doute",
+    "reves"
+   ],
+   "note": "",
+   "source": "loewentheil"
+  },
+  {
+   "id": "s234",
+   "text": "Every no brings me closer to a yes",
+   "category": "money",
+   "tags": [
+    "business",
+    "echec"
+   ],
+   "note": "",
+   "source": "boehman"
+  },
+  {
+   "id": "s235",
+   "text": "Selling is serving",
+   "category": "money",
+   "tags": [
+    "business",
+    "service"
+   ],
+   "note": "",
+   "source": "boehman"
+  },
+  {
+   "id": "s236",
+   "text": "I'm not attached to one sale. I'm committed to the result",
+   "category": "money",
+   "tags": [
+    "business"
+   ],
+   "note": "",
+   "source": "boehman"
+  },
+  {
+   "id": "s237",
+   "text": "My body knows what's true for me: I notice what feels like freedom and what feels like a cage",
+   "category": "ownback",
+   "tags": [
+    "integrite",
+    "corps",
+    "decision"
+   ],
+   "note": "",
+   "source": "beck"
+  },
+  {
+   "id": "s238",
+   "text": "First drafts are allowed to be messy",
+   "category": "action",
+   "tags": [
+    "perfectionnisme",
+    "idees"
+   ],
+   "note": "",
+   "source": "lamott"
+  },
+  {
+   "id": "s239",
+   "text": "Rest is part of the work, not a reward for finishing it",
+   "category": "time",
+   "tags": [
+    "repos",
+    "fatigue",
+    "travail"
+   ],
+   "note": "",
+   "source": "more"
+  },
+  {
+   "id": "s240",
+   "text": "Tired doesn't mean stop. It can mean gently",
+   "category": "presence",
+   "tags": [
+    "fatigue",
+    "repos"
+   ],
+   "note": "",
+   "source": "more"
   }
  ]
 }
