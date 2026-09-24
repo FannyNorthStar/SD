@@ -376,18 +376,18 @@ header nav { display: flex; gap: 6px; align-items: center; }
     <a class="logo" onclick="showView('home')">Thoughts of the Day <span>ctfar</span></a>
     <nav>
       <button class="icon-btn" title="Switch user" onclick="switchUser()" id="user-badge" style="font-size:0.75rem;font-weight:600;width:auto;padding:0 10px;border-radius:999px;background:var(--accent-light);color:var(--accent);"></button>
+      <button class="icon-btn" title="Hypnosis" onclick="showView('hypnosis')">🌀</button>
       <button class="icon-btn" title="Explore" onclick="showView('explore')">🧭</button>
       <button class="icon-btn" title="Business" onclick="showView('business')">💼</button>
       <button class="icon-btn" title="Instagram" onclick="showView('insta')">📸</button>
       <button class="icon-btn" title="Patterns" onclick="showView('patterns')">🔍</button>
-      <button class="icon-btn" title="Hypnosis" onclick="showView('hypnosis')">🌀</button>
       <button class="icon-btn" title="Archive" onclick="showView('archive')">📋</button>
       <button class="icon-btn" title="Settings" onclick="openSettings()">⚙️</button>
     </nav>
   </header>
 
   <!-- ═══ HOME ═══ -->
-  <div id="view-home" class="view active">
+  <div id="view-home" class="view">
     <div class="home-hero">
       <h1>What's on your mind?</h1>
     </div>
@@ -499,7 +499,7 @@ header nav { display: flex; gap: 6px; align-items: center; }
   </div>
 
   <!-- ═══ HYPNOSIS ═══ -->
-  <div id="view-hypnosis" class="view">
+  <div id="view-hypnosis" class="view active">
     <div class="hypno-header"><h2>Hypnosis</h2></div>
     <p class="hypno-intro">Self-hypnosis sessions. Headphones recommended. Never listen while driving or doing anything that requires your full attention.</p>
 
@@ -649,7 +649,7 @@ function selectUser(user) {
   state = { sessions: [], currentSessionId: null, settings: { apiKey: '', model: 'gpt-4o', sheetsUrl: '' }, patterns: null };
   loadState();
   renderRecentSessions();
-  showView('home');
+  showView('hypnosis');
 }
 
 function switchUser() {
