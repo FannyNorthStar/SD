@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>Thoughts of the Day</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -108,6 +109,37 @@ header nav { display: flex; gap: 6px; align-items: center; }
 .hypno-card.soon { opacity: 0.55; box-shadow: none; }
 .hypno-card.soon .hypno-desc { margin-bottom: 0; }
 .hypno-note { font-size: 0.75rem; color: var(--text-muted); margin: 16px 0 32px; text-align: center; }
+
+/* ── Nav: scroll horizontally on small screens ── */
+header nav { overflow-x: auto; scrollbar-width: none; min-width: 0; }
+header nav::-webkit-scrollbar { display: none; }
+header nav .icon-btn { flex-shrink: 0; }
+
+/* ── Good Sentences ── */
+.gs-header { padding: 24px 0 8px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.gs-header h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; }
+.gs-count { font-size: 0.75rem; color: var(--text-muted); }
+.gs-controls { display: flex; gap: 8px; margin: 8px 0 10px; flex-wrap: wrap; }
+.gs-controls select, .gs-controls input { font-family: var(--font-sans); font-size: 0.88rem; color: var(--text); background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 12px; }
+.gs-controls select { flex: 0 1 220px; min-width: 0; }
+.gs-controls input { flex: 1 1 220px; min-width: 0; }
+.gs-controls input:focus, .gs-controls select:focus { outline: none; border-color: var(--accent); }
+.gs-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.gs-chip { border: 1px solid var(--border); background: transparent; color: var(--text-secondary); font-family: var(--font-sans); font-size: 0.75rem; border-radius: 999px; padding: 4px 11px; cursor: pointer; transition: all var(--transition); }
+.gs-chip:hover, .gs-chip.active { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+.gs-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.gs-btn { border: 1px solid var(--border); background: var(--surface-raised); color: var(--text-secondary); font-family: var(--font-sans); font-size: 0.78rem; font-weight: 500; border-radius: 999px; padding: 6px 14px; cursor: pointer; transition: all var(--transition); }
+.gs-btn:hover { border-color: var(--accent); color: var(--accent); }
+.gs-btn:disabled { opacity: 0.5; cursor: default; }
+.gs-random { background: var(--accent-warm-light); border: 1px solid var(--accent-warm); border-radius: var(--radius-lg); padding: 18px 20px; margin-bottom: 18px; font-family: var(--font-serif); font-size: 1.3rem; line-height: 1.35; }
+.gs-random .gs-meta { font-family: var(--font-sans); }
+.gs-group-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin: 20px 0 8px; }
+.gs-item { background: var(--surface-raised); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 6px; font-size: 0.92rem; line-height: 1.5; }
+.gs-item.saved { border-left: 3px solid var(--accent); }
+.gs-item.unsorted { border-left: 3px solid var(--accent-warm); }
+.gs-note { font-size: 0.8rem; color: var(--text-secondary); font-style: italic; margin-top: 3px; }
+.gs-meta { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; }
+.gs-empty { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.88rem; }
 
 /* ── User Picker ── */
 .user-picker {
@@ -377,6 +409,7 @@ header nav { display: flex; gap: 6px; align-items: center; }
     <nav>
       <button class="icon-btn" title="Switch user" onclick="switchUser()" id="user-badge" style="font-size:0.75rem;font-weight:600;width:auto;padding:0 10px;border-radius:999px;background:var(--accent-light);color:var(--accent);"></button>
       <button class="icon-btn" title="Hypnosis" onclick="showView('hypnosis')">🌀</button>
+      <button class="icon-btn" title="Good sentences" onclick="showView('goodsentences')">✨</button>
       <button class="icon-btn" title="Explore" onclick="showView('explore')">🧭</button>
       <button class="icon-btn" title="Business" onclick="showView('business')">💼</button>
       <button class="icon-btn" title="Instagram" onclick="showView('insta')">📸</button>
@@ -535,6 +568,23 @@ header nav { display: flex; gap: 6px; align-items: center; }
       <div class="hypno-card-top"><h3>Already Here</h3><span class="hypno-duration">15 min</span></div>
       <p class="hypno-desc">Slow down. Look around. Breathe. See what's already here.</p>
     </div>
+  </div>
+
+  <!-- ═══ GOOD SENTENCES ═══ -->
+  <div id="view-goodsentences" class="view">
+    <div class="gs-header"><h2>Good sentences</h2><span class="gs-count" id="gs-count"></span></div>
+    <div class="gs-controls">
+      <select id="gs-cat" onchange="gsSetCat(this.value)"><option value="all">All themes</option></select>
+      <input type="search" id="gs-q" placeholder="Search a situation: tired, fear, clients, famille…" oninput="gsSetQuery(this.value)">
+    </div>
+    <div class="gs-chips" id="gs-chips"></div>
+    <div class="gs-actions">
+      <button class="gs-btn" onclick="gsRandom()">✨ Random sentence</button>
+      <button class="gs-btn" id="gs-classify-btn" onclick="gsClassifyUnsorted()" style="display:none">🏷 Classify saved sentences</button>
+      <button class="gs-btn" onclick="gsExport()">⤓ Export my saved sentences</button>
+    </div>
+    <div id="gs-random-box"></div>
+    <div id="gs-list"><div class="gs-empty">Loading…</div></div>
   </div>
 
   <!-- ═══ EXPLORE ═══ -->
@@ -799,6 +849,7 @@ function showView(name) {
   else if (name === 'business') renderBizSessions();
   else if (name === 'insta') { /* static view, no render needed */ }
   if (name !== 'hypnosis') document.querySelectorAll('#view-hypnosis audio').forEach(a => a.pause());
+  if (name === 'goodsentences') gsOpen();
 }
 
 // Hypnosis: only one session plays at a time
@@ -1763,6 +1814,7 @@ function saveLine(type, text) {
   state.saved.push({ type: type, text: text.replace(/&#39;/g, "'"), date: new Date().toISOString() });
   saveState();
   showToast(type === 'idea' ? 'Idea saved!' : 'Sentence saved!');
+  if (type === 'sentence' && state.settings.apiKey) gsClassify([state.saved.length - 1]);
 }
 
 function saveFromMessage(btn) {
@@ -1807,6 +1859,193 @@ function renderSavedItems(type) {
     var realIdx = (state.saved || []).indexOf(item);
     return '<div class="saved-item">' + escHTML(item.text) + '<div class="saved-date">' + formatDate(new Date(item.date)) + '</div><button class="delete-saved" onclick="deleteSaved(' + realIdx + ')">✕</button></div>';
   }).join('');
+}
+
+// ═══════════════════════════════════════════════════
+// GOOD SENTENCES (library in sentences.json + saved sentences auto-classified with OpenAI)
+// ═══════════════════════════════════════════════════
+var GS = { lib: null, cat: 'all', q: '', loading: false, classifying: false };
+var GS_CHIPS = ['motivation', 'fatigue', 'procrastination', 'peur', 'doute', 'travail', 'temps', 'échec', 'perfectionnisme', 'argent', 'clients', 'famille', 'regard des autres', 'présence'];
+
+function gsNorm(s) { return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
+function gsCatInfo(id) { return (GS.lib && GS.lib.categories.find(function(c) { return c.id === id; })) || null; }
+function gsCleanSaved(text) { return (text || '').replace(/^[CTFAR]:\s*/, '').trim(); }
+
+function gsOpen() {
+  if (GS.lib) { gsRender(); return; }
+  if (GS.loading) return;
+  GS.loading = true;
+  fetch('sentences.json', { cache: 'no-cache' })
+    .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(data) {
+      GS.lib = data; GS.loading = false;
+      var sel = document.getElementById('gs-cat');
+      sel.innerHTML = '<option value="all">All themes</option>' + data.categories.map(function(c) {
+        return '<option value="' + c.id + '">' + c.emoji + ' ' + escHTML(c.label) + '</option>';
+      }).join('');
+      document.getElementById('gs-chips').innerHTML = GS_CHIPS.map(function(k) {
+        return '<button class="gs-chip" data-k="' + escHTML(k) + '" onclick="gsChip(this)">' + escHTML(k) + '</button>';
+      }).join('');
+      gsRender();
+    })
+    .catch(function(e) {
+      GS.loading = false;
+      document.getElementById('gs-list').innerHTML = '<div class="gs-empty">Could not load sentences.json (' + escHTML(e.message) + '). It only loads from the published site, not from a local file.</div>';
+    });
+}
+
+function gsAll() {
+  var lib = (GS.lib ? GS.lib.sentences : []).map(function(s) { return Object.assign({ origin: 'library' }, s); });
+  var saved = [];
+  (state.saved || []).forEach(function(it, idx) {
+    if (it.type !== 'sentence') return;
+    saved.push({ text: gsCleanSaved(it.text), category: it.category || null, tags: it.tags || [], note: '', source: 'saved', origin: 'saved', savedIdx: idx, date: it.date });
+  });
+  return saved.reverse().concat(lib);
+}
+
+function gsHay(s) {
+  if (!s._hay) {
+    var cat = gsCatInfo(s.category);
+    var tagWords = (s.tags || []).map(function(t) { return t + ' ' + ((GS.lib && GS.lib.tags[t]) || ''); }).join(' ');
+    s._hay = gsNorm([s.text, s.note, cat ? cat.label : '', tagWords].join(' '));
+  }
+  return s._hay;
+}
+
+function gsFiltered() {
+  var words = gsNorm(GS.q).split(/\s+/).filter(function(w) { return w.length > 0; });
+  return gsAll().filter(function(s) {
+    if (GS.cat !== 'all' && s.category !== GS.cat) return false;
+    if (!words.length) return true;
+    var h = gsHay(s);
+    return words.every(function(w) { return h.indexOf(w) !== -1; });
+  });
+}
+
+function gsItemHTML(s) {
+  var cat = gsCatInfo(s.category);
+  var cls = 'gs-item' + (s.origin === 'saved' ? (s.category ? ' saved' : ' unsorted') : '');
+  var meta = [];
+  if (cat && (GS.cat === 'all') && (GS.q || s.origin === 'saved')) meta.push(cat.emoji + ' ' + cat.label);
+  if (s.origin === 'saved') meta.push(s.category ? 'saved from a session' : 'saved · not classified yet');
+  else if (s.source === 'jody') meta.push(GS.lib.sources.jody);
+  return '<div class="' + cls + '">' + escHTML(s.text) +
+    (s.note ? '<div class="gs-note">' + escHTML(s.note) + '</div>' : '') +
+    (meta.length ? '<div class="gs-meta">' + escHTML(meta.join(' · ')) + '</div>' : '') + '</div>';
+}
+
+function gsRender() {
+  if (!GS.lib) return;
+  var items = gsFiltered();
+  var all = gsAll();
+  var unsorted = all.filter(function(s) { return s.origin === 'saved' && !s.category; });
+  document.getElementById('gs-count').textContent = items.length + ' / ' + all.length;
+  var btn = document.getElementById('gs-classify-btn');
+  btn.style.display = unsorted.length ? '' : 'none';
+  btn.disabled = GS.classifying;
+  btn.textContent = GS.classifying ? '🏷 Classifying…' : '🏷 Classify saved sentences (' + unsorted.length + ')';
+  var list = document.getElementById('gs-list');
+  if (!items.length) { list.innerHTML = '<div class="gs-empty">No sentence matches. Try another word, or another theme.</div>'; return; }
+  var html = '';
+  if (GS.cat === 'all' && !GS.q) {
+    var uns = items.filter(function(s) { return s.origin === 'saved' && !s.category; });
+    if (uns.length) html += '<div class="gs-group-title">To sort</div>' + uns.map(gsItemHTML).join('');
+    GS.lib.categories.forEach(function(c) {
+      var inCat = items.filter(function(s) { return s.category === c.id; });
+      if (!inCat.length) return;
+      html += '<div class="gs-group-title">' + c.emoji + ' ' + escHTML(c.label) + ' · ' + inCat.length + '</div>' + inCat.map(gsItemHTML).join('');
+    });
+  } else {
+    html = items.map(gsItemHTML).join('');
+  }
+  list.innerHTML = html;
+}
+
+function gsSetCat(v) { GS.cat = v; document.getElementById('gs-random-box').innerHTML = ''; gsRender(); }
+function gsSetQuery(v) {
+  GS.q = v;
+  document.querySelectorAll('.gs-chip').forEach(function(c) { c.classList.toggle('active', gsNorm(c.dataset.k) === gsNorm(v)); });
+  document.getElementById('gs-random-box').innerHTML = '';
+  gsRender();
+}
+function gsChip(el) {
+  var k = el.dataset.k;
+  var v = gsNorm(GS.q) === gsNorm(k) ? '' : k;
+  document.getElementById('gs-q').value = v;
+  gsSetQuery(v);
+}
+function gsRandom() {
+  var items = gsFiltered();
+  if (!items.length) return;
+  var s = items[Math.floor(Math.random() * items.length)];
+  var cat = gsCatInfo(s.category);
+  document.getElementById('gs-random-box').innerHTML = '<div class="gs-random">' + escHTML(s.text) +
+    (s.note ? '<div class="gs-note">' + escHTML(s.note) + '</div>' : '') +
+    (cat ? '<div class="gs-meta">' + cat.emoji + ' ' + escHTML(cat.label) + '</div>' : '') + '</div>';
+}
+
+async function gsClassify(indices) {
+  if (!state.settings.apiKey || !indices.length) return false;
+  if (!GS.lib) {
+    try { var r = await fetch('sentences.json', { cache: 'no-cache' }); GS.lib = await r.json(); } catch (e) { return false; }
+  }
+  var cats = GS.lib.categories.map(function(c) { return c.id + ' = ' + c.label; }).join('\n');
+  var tags = Object.keys(GS.lib.tags).map(function(k) { return k + ' (' + GS.lib.tags[k].split(' ').slice(0, 6).join(', ') + ')'; }).join('\n');
+  var payload = indices.map(function(i) { return { i: i, text: gsCleanSaved(state.saved[i].text) }; });
+  var sys = 'You classify short personal "good sentences" (thoughts, mantras, coaching questions) into a personal library.\n' +
+    'For each sentence, choose exactly ONE category id from:\n' + cats +
+    '\n\nThen choose 2 to 4 tag ids describing the situations where this sentence would help (e.g. feeling tired, afraid, procrastinating, dealing with family, money). Use ONLY these tag ids:\n' + tags +
+    '\n\nReply with JSON only: {"results":[{"i":<number>,"category":"<id>","tags":["<id>",...]}]}';
+  try {
+    var response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + state.settings.apiKey },
+      body: JSON.stringify({ model: state.settings.model, temperature: 0.2, max_tokens: 1500, response_format: { type: 'json_object' },
+        messages: [{ role: 'system', content: sys }, { role: 'user', content: JSON.stringify(payload) }] })
+    });
+    if (!response.ok) throw new Error('API error ' + response.status);
+    var data = await response.json();
+    var out = JSON.parse(data.choices[0].message.content || '{}');
+    var catIds = GS.lib.categories.map(function(c) { return c.id; });
+    var n = 0;
+    (out.results || []).forEach(function(r) {
+      var it = state.saved[r.i];
+      if (!it || it.type !== 'sentence' || catIds.indexOf(r.category) === -1) return;
+      it.category = r.category;
+      it.tags = (r.tags || []).filter(function(t) { return GS.lib.tags[t]; });
+      n++;
+    });
+    saveState();
+    return n;
+  } catch (e) { console.warn('Classification failed', e); return false; }
+}
+
+async function gsClassifyUnsorted() {
+  if (!state.settings.apiKey) { showToast('Add your OpenAI API key in settings first'); return; }
+  var idx = [];
+  (state.saved || []).forEach(function(it, i) { if (it.type === 'sentence' && !it.category) idx.push(i); });
+  if (!idx.length) return;
+  GS.classifying = true; gsRender();
+  var total = 0;
+  for (var k = 0; k < idx.length; k += 20) {
+    var n = await gsClassify(idx.slice(k, k + 20));
+    if (n === false) { showToast('Classification failed. Check your API key.'); break; }
+    total += n;
+  }
+  GS.classifying = false; gsRender();
+  if (total) showToast(total + ' sentence' + (total > 1 ? 's' : '') + ' classified');
+}
+
+function gsExport() {
+  var items = (state.saved || []).filter(function(it) { return it.type === 'sentence'; }).map(function(it) {
+    return { text: gsCleanSaved(it.text), category: it.category || null, tags: it.tags || [], date: it.date };
+  });
+  if (!items.length) { showToast('No saved sentences yet'); return; }
+  var txt = JSON.stringify({ user: currentUser, exported: new Date().toISOString(), sentences: items }, null, 1);
+  var done = function() { showToast(items.length + ' sentences copied. Paste them to Claude to add them to the library.'); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, function() { prompt('Copy this:', txt); });
+  else prompt('Copy this:', txt);
 }
 
 // ═══════════════════════════════════════════════════

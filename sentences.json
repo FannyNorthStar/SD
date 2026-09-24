@@ -1,0 +1,1818 @@
+{
+ "version": 1,
+ "categories": [
+  {
+   "id": "action",
+   "label": "Action & Discipline",
+   "emoji": "⚡"
+  },
+  {
+   "id": "failure",
+   "label": "Failure & Learning",
+   "emoji": "🌱"
+  },
+  {
+   "id": "dreams",
+   "label": "Dreams & Possibility",
+   "emoji": "🌟"
+  },
+  {
+   "id": "time",
+   "label": "Time & Pace",
+   "emoji": "⏳"
+  },
+  {
+   "id": "ownback",
+   "label": "Having Your Own Back",
+   "emoji": "🤍"
+  },
+  {
+   "id": "others",
+   "label": "Others' Opinions",
+   "emoji": "🫧"
+  },
+  {
+   "id": "service",
+   "label": "Service & Clients",
+   "emoji": "🤝"
+  },
+  {
+   "id": "money",
+   "label": "Money & Business",
+   "emoji": "💰"
+  },
+  {
+   "id": "fun",
+   "label": "Fun & Play",
+   "emoji": "🎈"
+  },
+  {
+   "id": "presence",
+   "label": "Presence & Emotions",
+   "emoji": "🌿"
+  }
+ ],
+ "tags": {
+  "motivation": "motivation envie flemme lazy unmotivated démotivée pas envie",
+  "fatigue": "fatigue fatiguée tired épuisée exhausted énergie energy lassitude low",
+  "procrastination": "procrastination repousser remettre à plus tard avoid évitement éviter excuses",
+  "discipline": "discipline consistency régularité constance habitude routine consistent",
+  "action": "action agir act passer à l'action faire do start commencer",
+  "decision": "décision decide choix choose engagement commitment follow through tenir parole",
+  "planning": "planning plan schedule emploi du temps organisation agenda",
+  "temps": "temps time deadline retard rush pressée urgence patience lent slow",
+  "echec": "échec failure fail erreur mistake rater raté",
+  "apprentissage": "apprendre learning progresser progress grow croissance compétence débutante beginner",
+  "peur": "peur fear anxiété anxiety stress trac scared ego",
+  "doute": "doute doubt confiance confidence légitimité imposter imposteur croire believe",
+  "perfectionnisme": "perfectionnisme perfect parfait good enough b- moyen",
+  "difficulte": "difficile difficulté hard challenge défi obstacle résistance resistance dur tough",
+  "reves": "rêve rêves dream dreams objectif goal ambition vision possible",
+  "regard": "jugement judgment regard des autres opinion critique approbation validation ce qu'ils pensent",
+  "limites": "limites boundaries dire non say no culpabilité guilt",
+  "famille": "famille family proches parents drama",
+  "soutien": "soutien own back self-trust confiance en soi bienveillance kindness self-talk relation à soi",
+  "travail": "travail work boulot job productivité focus concentration",
+  "argent": "argent money finances revenus income",
+  "business": "business entreprise clients ventes sales marketing prospection vendre sell offre",
+  "service": "servir serve aider help contribution impact",
+  "plaisir": "fun plaisir jeu play amusement joie ennui boredom boring",
+  "presence": "présence présent present calme calm ralentir slow down respirer breathe moment",
+  "emotions": "émotions emotions ressentir feel inconfort discomfort frustration",
+  "comparaison": "comparaison compare jalousie jealousy envie réussite des autres",
+  "integrite": "intégrité integrity valeurs values honnêteté principes",
+  "abondance": "abondance enough assez scarcity manque chance gratitude",
+  "corps": "corps body sport mouvement movement exercise",
+  "idees": "idées ideas créativité creativity écriture writing créer create"
+ },
+ "sources": {
+  "perso": "My thoughts",
+  "notes": "Notes",
+  "jody": "Inspired by Jody Moore"
+ },
+ "sentences": [
+  {
+   "id": "s001",
+   "text": "Lack of motivation is not a reason not to do it",
+   "category": "action",
+   "tags": [
+    "motivation",
+    "fatigue",
+    "procrastination",
+    "discipline"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s002",
+   "text": "I am hard working",
+   "category": "action",
+   "tags": [
+    "travail",
+    "discipline"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s003",
+   "text": "I like to work",
+   "category": "action",
+   "tags": [
+    "travail",
+    "motivation"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s004",
+   "text": "I have fun during the grind",
+   "category": "fun",
+   "tags": [
+    "plaisir",
+    "travail",
+    "difficulte"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s005",
+   "text": "It's exciting to fail and learn",
+   "category": "failure",
+   "tags": [
+    "echec",
+    "apprentissage"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s006",
+   "text": "What can I learn from it?",
+   "category": "failure",
+   "tags": [
+    "apprentissage",
+    "echec"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s007",
+   "text": "How cool is this challenge",
+   "category": "fun",
+   "tags": [
+    "difficulte",
+    "plaisir"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s008",
+   "text": "Being focused is fun",
+   "category": "fun",
+   "tags": [
+    "travail",
+    "plaisir"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s009",
+   "text": "Nobody can judge me as nobody is me",
+   "category": "others",
+   "tags": [
+    "regard"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s010",
+   "text": "I am inspired by people that act",
+   "category": "action",
+   "tags": [
+    "action",
+    "motivation",
+    "comparaison"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s011",
+   "text": "I want to live by acting / agir",
+   "category": "action",
+   "tags": [
+    "action",
+    "motivation"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s012",
+   "text": "J'agis and I deliver",
+   "category": "action",
+   "tags": [
+    "action",
+    "travail"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s013",
+   "text": "What matters is action",
+   "category": "action",
+   "tags": [
+    "action",
+    "procrastination"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s014",
+   "text": "I take decisions and I follow through",
+   "category": "action",
+   "tags": [
+    "decision",
+    "discipline"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s015",
+   "text": "Consistency is key",
+   "category": "action",
+   "tags": [
+    "discipline"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s016",
+   "text": "I am gifted and I want to improve it. Always. Again and again.",
+   "category": "failure",
+   "tags": [
+    "apprentissage",
+    "doute"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s017",
+   "text": "I will think I don't want to do it because my brain likes to play with my nerves. It's ok, I can and I do choose not to care, not to listen to it and to keep going",
+   "category": "action",
+   "tags": [
+    "motivation",
+    "procrastination",
+    "difficulte",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s018",
+   "text": "My ego is scared and it's ok",
+   "category": "presence",
+   "tags": [
+    "peur",
+    "emotions"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s019",
+   "text": "I live for sensations like this",
+   "category": "presence",
+   "tags": [
+    "emotions",
+    "plaisir"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s020",
+   "text": "It's not about me, it's about them",
+   "category": "service",
+   "tags": [
+    "service",
+    "peur",
+    "regard"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s021",
+   "text": "How can I serve?",
+   "category": "service",
+   "tags": [
+    "service",
+    "business"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s022",
+   "text": "Feel the moment and breathe",
+   "category": "presence",
+   "tags": [
+    "presence",
+    "peur",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s023",
+   "text": "I'm a professional",
+   "category": "action",
+   "tags": [
+    "travail",
+    "discipline",
+    "doute"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s024",
+   "text": "It's a matter of principles",
+   "category": "ownback",
+   "tags": [
+    "integrite",
+    "decision"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s025",
+   "text": "Of course you do that",
+   "category": "action",
+   "tags": [
+    "discipline",
+    "motivation",
+    "procrastination",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s026",
+   "text": "What if it's not true?",
+   "category": "ownback",
+   "tags": [
+    "doute",
+    "peur"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s027",
+   "text": "Je ne cherche pas la facilité",
+   "category": "action",
+   "tags": [
+    "difficulte"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s028",
+   "text": "J'aime les défis avec moi-même",
+   "category": "fun",
+   "tags": [
+    "difficulte",
+    "plaisir"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s029",
+   "text": "J'aime sentir mon corps en mouvement",
+   "category": "presence",
+   "tags": [
+    "corps",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s030",
+   "text": "Allez, on va bien s'amuser",
+   "category": "fun",
+   "tags": [
+    "plaisir",
+    "motivation"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s031",
+   "text": "À chacun son chemin",
+   "category": "others",
+   "tags": [
+    "comparaison",
+    "regard"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s032",
+   "text": "Your past performance is completely irrelevant for your potential",
+   "category": "failure",
+   "tags": [
+    "echec",
+    "doute",
+    "apprentissage"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s033",
+   "text": "I figure out a way no matter what",
+   "category": "action",
+   "tags": [
+    "difficulte",
+    "doute"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s034",
+   "text": "Failure is the way (to figure it out)",
+   "category": "failure",
+   "tags": [
+    "echec",
+    "apprentissage"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s035",
+   "text": "I got us, I got me",
+   "category": "ownback",
+   "tags": [
+    "soutien"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s036",
+   "text": "I don't judge the way I make money",
+   "category": "money",
+   "tags": [
+    "argent",
+    "regard"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s037",
+   "text": "I honor my ideas",
+   "category": "dreams",
+   "tags": [
+    "idees",
+    "doute"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s038",
+   "text": "An unrealistic dream is not a reason not to fulfill it",
+   "category": "dreams",
+   "tags": [
+    "reves",
+    "doute"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s039",
+   "text": "How is it working for me?",
+   "category": "ownback",
+   "tags": [
+    "doute",
+    "decision"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s040",
+   "text": "What they think of me is none of my business",
+   "category": "others",
+   "tags": [
+    "regard",
+    "limites"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s041",
+   "text": "If I gave you 2M in a week once you find your 2 clients, would you succeed / do it?",
+   "category": "money",
+   "tags": [
+    "business",
+    "motivation",
+    "doute"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s042",
+   "text": "I can make anything fun",
+   "category": "fun",
+   "tags": [
+    "plaisir",
+    "travail"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s043",
+   "text": "I can make anything interesting",
+   "category": "fun",
+   "tags": [
+    "plaisir",
+    "motivation"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s044",
+   "text": "My way works great for me",
+   "category": "ownback",
+   "tags": [
+    "comparaison",
+    "soutien"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s045",
+   "text": "I have just the right amount of time to accomplish what I've chosen",
+   "category": "time",
+   "tags": [
+    "temps"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s046",
+   "text": "I know I can do what I said I would do",
+   "category": "ownback",
+   "tags": [
+    "decision",
+    "soutien"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s047",
+   "text": "I'm committed to following through tomorrow",
+   "category": "action",
+   "tags": [
+    "decision",
+    "planning"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s048",
+   "text": "The universe has given me the perfect amount of time to accomplish what I've set out to do",
+   "category": "time",
+   "tags": [
+    "temps"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s049",
+   "text": "There's a reason why I've created the schedule as I did",
+   "category": "time",
+   "tags": [
+    "planning",
+    "procrastination"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s050",
+   "text": "My schedule is meant to be accomplished in just the way I've planned it",
+   "category": "time",
+   "tags": [
+    "planning",
+    "discipline"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s051",
+   "text": "I'm going to get everything done regardless of the obstacles that show up",
+   "category": "action",
+   "tags": [
+    "difficulte",
+    "discipline"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s052",
+   "text": "Obstacles are going to come up, and I know I can handle each one",
+   "category": "action",
+   "tags": [
+    "difficulte",
+    "peur"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s053",
+   "text": "50% of life is not supposed to be fun",
+   "category": "presence",
+   "tags": [
+    "emotions",
+    "difficulte"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s054",
+   "text": "I build a relationship with myself and I have my back",
+   "category": "ownback",
+   "tags": [
+    "soutien"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s055",
+   "text": "I honor the words I give myself",
+   "category": "ownback",
+   "tags": [
+    "decision",
+    "soutien"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s056",
+   "text": "Planning allows spontaneity",
+   "category": "time",
+   "tags": [
+    "planning"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s057",
+   "text": "I think about tomorrow today",
+   "category": "time",
+   "tags": [
+    "planning"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s058",
+   "text": "How would my life be if there were no more excuses?",
+   "category": "action",
+   "tags": [
+    "procrastination"
+   ],
+   "note": "Doing what's planned, not avoiding it because of an excuse.",
+   "source": "perso"
+  },
+  {
+   "id": "s059",
+   "text": "I build trust with myself",
+   "category": "ownback",
+   "tags": [
+    "soutien",
+    "decision"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s060",
+   "text": "I'm consistent",
+   "category": "action",
+   "tags": [
+    "discipline"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s061",
+   "text": "I love constraints",
+   "category": "action",
+   "tags": [
+    "discipline",
+    "planning"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s062",
+   "text": "I love to do one thing and follow through",
+   "category": "action",
+   "tags": [
+    "travail",
+    "decision"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s063",
+   "text": "If you want to do something else, it's because it starts to be hard. Plan to hate it and keep on anyway.",
+   "category": "action",
+   "tags": [
+    "difficulte",
+    "procrastination",
+    "motivation"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s064",
+   "text": "I do one dream at a time",
+   "category": "dreams",
+   "tags": [
+    "reves",
+    "travail"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s065",
+   "text": "I am kind to myself",
+   "category": "ownback",
+   "tags": [
+    "soutien",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s066",
+   "text": "I know how to move through resistance and I do what I planned ahead anyway",
+   "category": "action",
+   "tags": [
+    "difficulte",
+    "procrastination",
+    "planning"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s067",
+   "text": "Resistance is the currency to get it done",
+   "category": "action",
+   "tags": [
+    "difficulte",
+    "emotions"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s068",
+   "text": "It's hard, and let's go do it anyway",
+   "category": "action",
+   "tags": [
+    "difficulte",
+    "motivation",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s069",
+   "text": "Rather B- than never turning it in",
+   "category": "action",
+   "tags": [
+    "perfectionnisme",
+    "procrastination"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s070",
+   "text": "I am only going to get better at this",
+   "category": "failure",
+   "tags": [
+    "apprentissage",
+    "doute"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s071",
+   "text": "The goal is not to feel better, it's to feel",
+   "category": "presence",
+   "tags": [
+    "emotions"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s072",
+   "text": "There's nothing wrong with me",
+   "category": "ownback",
+   "tags": [
+    "soutien",
+    "doute"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s073",
+   "text": "I'm not gonna believe the lies my brain tells me",
+   "category": "ownback",
+   "tags": [
+    "doute",
+    "peur"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s074",
+   "text": "I always have my own back, no matter what",
+   "category": "ownback",
+   "tags": [
+    "soutien"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s075",
+   "text": "Je ne lâche jamais",
+   "category": "action",
+   "tags": [
+    "difficulte",
+    "discipline",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s076",
+   "text": "C'est plus facile aujourd'hui que demain",
+   "category": "time",
+   "tags": [
+    "procrastination"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s077",
+   "text": "J'aime la pluie",
+   "category": "presence",
+   "tags": [
+    "presence",
+    "plaisir"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s078",
+   "text": "Ça dure exactement le temps que ça doit durer",
+   "category": "time",
+   "tags": [
+    "temps",
+    "emotions",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s079",
+   "text": "Clients are coming",
+   "category": "money",
+   "tags": [
+    "business",
+    "abondance"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s080",
+   "text": "Nique, j'y vais",
+   "category": "action",
+   "tags": [
+    "action",
+    "peur",
+    "motivation"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s081",
+   "text": "Il y a toujours moyen d'avoir ce que je veux",
+   "category": "dreams",
+   "tags": [
+    "reves",
+    "abondance"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s082",
+   "text": "Je me débrouille toujours pour avoir ce que je veux",
+   "category": "dreams",
+   "tags": [
+    "reves",
+    "difficulte"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s083",
+   "text": "Bien faire le boulot, c'est la base",
+   "category": "action",
+   "tags": [
+    "travail",
+    "integrite"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s084",
+   "text": "Il n'y a ni à se battre ni à s'enfuir, juste être là",
+   "category": "presence",
+   "tags": [
+    "presence",
+    "emotions"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s085",
+   "text": "I didn't leave them behind, they just didn't join",
+   "category": "others",
+   "tags": [
+    "regard",
+    "comparaison",
+    "famille"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s086",
+   "text": "There will always be enough",
+   "category": "money",
+   "tags": [
+    "abondance",
+    "argent"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s087",
+   "text": "My brain creates the fun",
+   "category": "fun",
+   "tags": [
+    "plaisir"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s088",
+   "text": "It has nothing to do with me",
+   "category": "others",
+   "tags": [
+    "regard",
+    "limites"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s089",
+   "text": "I have exactly the right amount of time I need",
+   "category": "time",
+   "tags": [
+    "temps"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s090",
+   "text": "I know I'll get it done",
+   "category": "action",
+   "tags": [
+    "doute",
+    "decision",
+    "motivation"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s091",
+   "text": "Un vaut mieux que zéro",
+   "category": "action",
+   "tags": [
+    "perfectionnisme",
+    "procrastination",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s092",
+   "text": "Les difficultés font partie du jeu",
+   "category": "failure",
+   "tags": [
+    "difficulte"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s093",
+   "text": "This is hard and that's ok",
+   "category": "presence",
+   "tags": [
+    "difficulte",
+    "emotions",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s094",
+   "text": "I'm willing to be not good at it for a while until I get it",
+   "category": "failure",
+   "tags": [
+    "apprentissage",
+    "perfectionnisme"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s095",
+   "text": "Sales is a number game",
+   "category": "money",
+   "tags": [
+    "business",
+    "echec"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s096",
+   "text": "They may not fully understand and that's ok. I do, and I love me and I love them.",
+   "category": "others",
+   "tags": [
+    "regard",
+    "famille",
+    "limites"
+   ],
+   "note": "",
+   "source": "perso"
+  },
+  {
+   "id": "s097",
+   "text": "It's ok to be bad at your dreams",
+   "category": "dreams",
+   "tags": [
+    "apprentissage",
+    "perfectionnisme",
+    "reves"
+   ],
+   "note": "What do you need to be bad at?",
+   "source": "notes"
+  },
+  {
+   "id": "s098",
+   "text": "The goal is to move forward, not to beat yourself up",
+   "category": "ownback",
+   "tags": [
+    "soutien",
+    "echec"
+   ],
+   "note": "",
+   "source": "notes"
+  },
+  {
+   "id": "s099",
+   "text": "Anything I desire to do, I have the potential to get good at",
+   "category": "failure",
+   "tags": [
+    "apprentissage",
+    "reves"
+   ],
+   "note": "",
+   "source": "notes"
+  },
+  {
+   "id": "s100",
+   "text": "You have to take care of your dreams",
+   "category": "dreams",
+   "tags": [
+    "reves"
+   ],
+   "note": "",
+   "source": "notes"
+  },
+  {
+   "id": "s101",
+   "text": "Do difficult things until they become easy",
+   "category": "failure",
+   "tags": [
+    "difficulte",
+    "apprentissage"
+   ],
+   "note": "",
+   "source": "notes"
+  },
+  {
+   "id": "s102",
+   "text": "I am interested in… What is the process?",
+   "category": "dreams",
+   "tags": [
+    "apprentissage",
+    "reves"
+   ],
+   "note": "",
+   "source": "notes"
+  },
+  {
+   "id": "s103",
+   "text": "I have always dreamt about ___, is it possible to make it happen?",
+   "category": "dreams",
+   "tags": [
+    "reves"
+   ],
+   "note": "",
+   "source": "notes"
+  },
+  {
+   "id": "s104",
+   "text": "You can't do that to your dream",
+   "category": "dreams",
+   "tags": [
+    "reves",
+    "motivation",
+    "difficulte"
+   ],
+   "note": "Giving up on it: don't.",
+   "source": "notes"
+  },
+  {
+   "id": "s105",
+   "text": "It's gonna happen in a way you could never have guessed",
+   "category": "dreams",
+   "tags": [
+    "reves",
+    "doute"
+   ],
+   "note": "Yet keep taking steps forward, keep helping and serving.",
+   "source": "notes"
+  },
+  {
+   "id": "s106",
+   "text": "The result you think you'll get by achieving the dream is the result you need to get in order to achieve the dream",
+   "category": "dreams",
+   "tags": [
+    "reves",
+    "emotions"
+   ],
+   "note": "",
+   "source": "notes"
+  },
+  {
+   "id": "s107",
+   "text": "Serve the world and everybody benefits",
+   "category": "service",
+   "tags": [
+    "service"
+   ],
+   "note": "",
+   "source": "notes"
+  },
+  {
+   "id": "s108",
+   "text": "Let's just do it because it'll be fun. If you do do it, wouldn't it be fun?",
+   "category": "fun",
+   "tags": [
+    "plaisir",
+    "motivation"
+   ],
+   "note": "",
+   "source": "notes"
+  },
+  {
+   "id": "s109",
+   "text": "It'll be just as easy now as it will be in the future",
+   "category": "time",
+   "tags": [
+    "procrastination"
+   ],
+   "note": "",
+   "source": "notes"
+  },
+  {
+   "id": "s110",
+   "text": "It's ok if they have a lot of drama around something (weight, food…), it doesn't mean I have to",
+   "category": "others",
+   "tags": [
+    "famille",
+    "regard",
+    "limites"
+   ],
+   "note": "",
+   "source": "notes"
+  },
+  {
+   "id": "s111",
+   "text": "The goal isn't to avoid failure",
+   "category": "failure",
+   "tags": [
+    "echec"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s112",
+   "text": "Opportunities are everywhere",
+   "category": "money",
+   "tags": [
+    "business",
+    "abondance"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s113",
+   "text": "Integrity is what matters most",
+   "category": "ownback",
+   "tags": [
+    "integrite"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s114",
+   "text": "My job is to believe, and keep taking steps forward",
+   "category": "dreams",
+   "tags": [
+    "action",
+    "doute"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s115",
+   "text": "This is going to be fun",
+   "category": "fun",
+   "tags": [
+    "plaisir",
+    "motivation"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s116",
+   "text": "There's enough success to go around",
+   "category": "others",
+   "tags": [
+    "comparaison",
+    "abondance"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s117",
+   "text": "My people need me",
+   "category": "service",
+   "tags": [
+    "service",
+    "business",
+    "peur"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s118",
+   "text": "How can I help them even better?",
+   "category": "service",
+   "tags": [
+    "service",
+    "business"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s119",
+   "text": "Making it fun is my responsibility",
+   "category": "fun",
+   "tags": [
+    "plaisir",
+    "travail"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s120",
+   "text": "There's no rush",
+   "category": "time",
+   "tags": [
+    "temps",
+    "peur",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s121",
+   "text": "Everything is figure-out-able",
+   "category": "failure",
+   "tags": [
+    "difficulte",
+    "apprentissage"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s122",
+   "text": "I take ownership of all my results, good or bad",
+   "category": "ownback",
+   "tags": [
+    "decision",
+    "echec"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s123",
+   "text": "I'm proud of me",
+   "category": "ownback",
+   "tags": [
+    "soutien"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s124",
+   "text": "Making money is fun",
+   "category": "money",
+   "tags": [
+    "argent",
+    "plaisir"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s125",
+   "text": "What I offer is too valuable for my people to pass up",
+   "category": "money",
+   "tags": [
+    "business",
+    "doute"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s126",
+   "text": "I'm not for everyone",
+   "category": "others",
+   "tags": [
+    "regard",
+    "business"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s127",
+   "text": "People are allowed to be wrong about me",
+   "category": "others",
+   "tags": [
+    "regard"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s128",
+   "text": "I know what to do",
+   "category": "action",
+   "tags": [
+    "doute"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s129",
+   "text": "I'll know when I need to know",
+   "category": "time",
+   "tags": [
+    "doute",
+    "peur"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s130",
+   "text": "I can choose to believe, whatever happens",
+   "category": "dreams",
+   "tags": [
+    "doute"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s131",
+   "text": "\"There\" is not better than \"here\"",
+   "category": "presence",
+   "tags": [
+    "presence",
+    "comparaison",
+    "abondance"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s132",
+   "text": "Discomfort is the price of my dreams",
+   "category": "dreams",
+   "tags": [
+    "emotions",
+    "difficulte"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s133",
+   "text": "I'm capable of learning",
+   "category": "failure",
+   "tags": [
+    "apprentissage"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s134",
+   "text": "I love my people",
+   "category": "service",
+   "tags": [
+    "service"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s135",
+   "text": "Almost anything can be learned online",
+   "category": "failure",
+   "tags": [
+    "apprentissage"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s136",
+   "text": "Someone can teach me this",
+   "category": "failure",
+   "tags": [
+    "apprentissage"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s137",
+   "text": "To grow my business, I grow myself",
+   "category": "money",
+   "tags": [
+    "business",
+    "apprentissage"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s138",
+   "text": "Of course it's possible",
+   "category": "dreams",
+   "tags": [
+    "reves",
+    "doute",
+    "peur"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s139",
+   "text": "No regrets",
+   "category": "presence",
+   "tags": [
+    "decision"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s140",
+   "text": "It's only money",
+   "category": "money",
+   "tags": [
+    "argent",
+    "peur"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s141",
+   "text": "Done is better than perfect",
+   "category": "action",
+   "tags": [
+    "perfectionnisme",
+    "procrastination"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s142",
+   "text": "There's always an easier, more fun way",
+   "category": "fun",
+   "tags": [
+    "plaisir",
+    "difficulte"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s143",
+   "text": "I only fail if I quit",
+   "category": "failure",
+   "tags": [
+    "echec",
+    "difficulte"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s144",
+   "text": "Small steps, done consistently, will get me there",
+   "category": "action",
+   "tags": [
+    "discipline",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s145",
+   "text": "Anything I truly want is within reach",
+   "category": "dreams",
+   "tags": [
+    "reves",
+    "abondance"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s146",
+   "text": "Growth and contribution are what I'm here for",
+   "category": "service",
+   "tags": [
+    "apprentissage",
+    "service"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s147",
+   "text": "Believing in me is my job, nobody else's",
+   "category": "ownback",
+   "tags": [
+    "soutien",
+    "doute",
+    "regard"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s148",
+   "text": "I always follow my plan",
+   "category": "time",
+   "tags": [
+    "planning",
+    "discipline"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s149",
+   "text": "I keep going until I figure it out",
+   "category": "failure",
+   "tags": [
+    "difficulte"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s150",
+   "text": "It can take as long as it takes",
+   "category": "time",
+   "tags": [
+    "temps"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s151",
+   "text": "I can feel good whenever I choose",
+   "category": "presence",
+   "tags": [
+    "emotions",
+    "fatigue"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s152",
+   "text": "Every idea is a remix, mine included",
+   "category": "dreams",
+   "tags": [
+    "idees",
+    "doute",
+    "comparaison"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s153",
+   "text": "I can do this my way",
+   "category": "ownback",
+   "tags": [
+    "comparaison"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s154",
+   "text": "My beginning can't be compared to someone else's middle",
+   "category": "others",
+   "tags": [
+    "comparaison"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s155",
+   "text": "Other people's success shows me what's possible",
+   "category": "others",
+   "tags": [
+    "comparaison",
+    "reves"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s156",
+   "text": "No one can do it exactly the way I do",
+   "category": "ownback",
+   "tags": [
+    "comparaison"
+   ],
+   "note": "",
+   "source": "jody"
+  },
+  {
+   "id": "s157",
+   "text": "I've got this",
+   "category": "ownback",
+   "tags": [
+    "doute",
+    "peur"
+   ],
+   "note": "",
+   "source": "jody"
+  }
+ ]
+}
