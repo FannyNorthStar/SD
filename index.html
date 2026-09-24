@@ -94,6 +94,21 @@ header nav { display: flex; gap: 6px; align-items: center; }
 .saved-item .delete-saved:hover { opacity: 1; }
 .saved-item .saved-date { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
 
+/* ── Hypnosis ── */
+.hypno-header { padding: 24px 0 8px; }
+.hypno-header h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; }
+.hypno-intro { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 20px; }
+.hypno-group-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin: 18px 0 8px; }
+.hypno-card { background: var(--surface-raised); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 16px 18px; margin-bottom: 10px; box-shadow: var(--shadow-sm); }
+.hypno-card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.hypno-card h3 { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 400; line-height: 1.2; }
+.hypno-duration { font-size: 0.72rem; font-weight: 500; color: var(--accent); background: var(--accent-light); border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+.hypno-desc { font-size: 0.84rem; color: var(--text-secondary); margin: 6px 0 12px; line-height: 1.5; }
+.hypno-card audio { width: 100%; height: 40px; }
+.hypno-card.soon { opacity: 0.55; box-shadow: none; }
+.hypno-card.soon .hypno-desc { margin-bottom: 0; }
+.hypno-note { font-size: 0.75rem; color: var(--text-muted); margin: 16px 0 32px; text-align: center; }
+
 /* ── User Picker ── */
 .user-picker {
   position: fixed; inset: 0; background: var(--bg); z-index: 500;
@@ -365,6 +380,7 @@ header nav { display: flex; gap: 6px; align-items: center; }
       <button class="icon-btn" title="Business" onclick="showView('business')">💼</button>
       <button class="icon-btn" title="Instagram" onclick="showView('insta')">📸</button>
       <button class="icon-btn" title="Patterns" onclick="showView('patterns')">🔍</button>
+      <button class="icon-btn" title="Hypnosis" onclick="showView('hypnosis')">🌀</button>
       <button class="icon-btn" title="Archive" onclick="showView('archive')">📋</button>
       <button class="icon-btn" title="Settings" onclick="openSettings()">⚙️</button>
     </nav>
@@ -480,6 +496,45 @@ header nav { display: flex; gap: 6px; align-items: center; }
       </div>
     </div>
     <div class="insta-results" id="insta-results"></div>
+  </div>
+
+  <!-- ═══ HYPNOSIS ═══ -->
+  <div id="view-hypnosis" class="view">
+    <div class="hypno-header"><h2>Hypnosis</h2></div>
+    <p class="hypno-intro">Self-hypnosis sessions. Headphones recommended. Never listen while driving or doing anything that requires your full attention.</p>
+
+    <div class="hypno-group-title">Reset · 10 min</div>
+
+    <div class="hypno-card">
+      <div class="hypno-card-top"><h3>Fresh Focus</h3><span class="hypno-duration">10 min</span></div>
+      <p class="hypno-desc">Mid-work break. A fresh shower of light to clear the fog, then a few movements to get back to your one next thing.</p>
+      <audio controls preload="none" src="audio/5a_reset_fresh_focus.mp3"></audio>
+    </div>
+
+    <div class="hypno-card">
+      <div class="hypno-card-top"><h3>Gentle Landing</h3><span class="hypno-duration">10 min</span></div>
+      <p class="hypno-desc">End of the workday. Set the projects down, step away from the screen, and arrive calmly in your evening.</p>
+      <audio controls preload="none" src="audio/5b_reset_gentle_landing.mp3"></audio>
+    </div>
+
+    <div class="hypno-group-title">Coming soon</div>
+
+    <div class="hypno-card soon">
+      <div class="hypno-card-top"><h3>Back to Life</h3><span class="hypno-duration">12 min</span></div>
+      <p class="hypno-desc">Out of the spiral, back into presence, movement and energy.</p>
+    </div>
+    <div class="hypno-card soon">
+      <div class="hypno-card-top"><h3>Your Inner Compass</h3><span class="hypno-duration">25 min</span></div>
+      <p class="hypno-desc">Clear, kind boundaries. No need to justify.</p>
+    </div>
+    <div class="hypno-card soon">
+      <div class="hypno-card-top"><h3>Have Your Own Back</h3><span class="hypno-duration">25 min</span></div>
+      <p class="hypno-desc">Decide, and decide again. The old voices become background noise.</p>
+    </div>
+    <div class="hypno-card soon">
+      <div class="hypno-card-top"><h3>Already Here</h3><span class="hypno-duration">15 min</span></div>
+      <p class="hypno-desc">Slow down. Look around. Breathe. See what's already here.</p>
+    </div>
   </div>
 
   <!-- ═══ EXPLORE ═══ -->
@@ -743,7 +798,13 @@ function showView(name) {
   else if (name === 'explore') renderLibrary();
   else if (name === 'business') renderBizSessions();
   else if (name === 'insta') { /* static view, no render needed */ }
+  if (name !== 'hypnosis') document.querySelectorAll('#view-hypnosis audio').forEach(a => a.pause());
 }
+
+// Hypnosis: only one session plays at a time
+document.querySelectorAll('#view-hypnosis audio').forEach(a => a.addEventListener('play', () => {
+  document.querySelectorAll('#view-hypnosis audio').forEach(o => { if (o !== a) o.pause(); });
+}));
 
 // ═══════════════════════════════════════════════════
 // HOME
