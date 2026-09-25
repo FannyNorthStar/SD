@@ -583,6 +583,7 @@ header nav .icon-btn { flex-shrink: 0; }
     <div class="gs-chips" id="gs-chips"></div>
     <div class="gs-actions">
       <button class="gs-btn" onclick="gsRandom()">✨ Random sentence</button>
+      <button class="gs-btn" onclick="gsShowMySaved()">⭐ All my saved</button>
       <button class="gs-btn" id="gs-classify-btn" onclick="gsClassifyUnsorted()" style="display:none">🏷 Classify saved sentences</button>
       <button class="gs-btn" onclick="gsExport()">⤓ Export my saved sentences</button>
     </div>
@@ -1952,6 +1953,14 @@ function gsItemHTML(s) {
 
 function gsRender() {
   if (!GS.lib) return;
+  // Ensure theme dropdown is populated (safety net)
+  var sel = document.getElementById('gs-cat');
+  if (sel.options.length <= 1 && GS.lib.categories && GS.lib.categories.length) {
+    sel.innerHTML = '<option value="all">All themes</option>' + GS.lib.categories.map(function(c) {
+      return '<option value="' + c.id + '">' + c.emoji + ' ' + escHTML(c.label) + '</option>';
+    }).join('');
+    sel.value = GS.cat;
+  }
   var items = gsFiltered();
   var all = gsAll();
   var unsorted = all.filter(function(s) { return s.origin === 'saved' && !s.category; });
@@ -1961,7 +1970,11 @@ function gsRender() {
   btn.disabled = GS.classifying;
   btn.textContent = GS.classifying ? '🏷 Classifying…' : '🏷 Classify saved sentences (' + unsorted.length + ')';
   var list = document.getElementById('gs-list');
-  if (!items.length) { list.innerHTML = '<div class="gs-empty">No sentence matches. Try another word, or another theme.</div>'; return; }
+  if (!items.length) {
+    var hint = GS.src === 'mine' ? 'No saved sentences yet. Save lines from your coaching sessions with the ⭐ button.' : 'No sentence matches. Try another word, or another theme.';
+    list.innerHTML = '<div class="gs-empty">' + hint + '</div>';
+    return;
+  }
   var html = '';
   if (GS.cat === 'all' && !GS.q) {  // grouped view
     var uns = items.filter(function(s) { return s.origin === 'saved' && !s.category; });
@@ -1979,6 +1992,15 @@ function gsRender() {
 
 function gsSetCat(v) { GS.cat = v; document.getElementById('gs-random-box').innerHTML = ''; gsRender(); }
 function gsSetSrc(v) { GS.src = v; document.getElementById('gs-random-box').innerHTML = ''; gsRender(); }
+function gsShowMySaved() {
+  GS.src = 'mine'; GS.cat = 'all'; GS.q = '';
+  document.getElementById('gs-src').value = 'mine';
+  document.getElementById('gs-cat').value = 'all';
+  document.getElementById('gs-q').value = '';
+  document.querySelectorAll('.gs-chip').forEach(function(c) { c.classList.remove('active'); });
+  document.getElementById('gs-random-box').innerHTML = '';
+  gsRender();
+}
 function gsSetQuery(v) {
   GS.q = v;
   document.querySelectorAll('.gs-chip').forEach(function(c) { c.classList.toggle('active', gsNorm(c.dataset.k) === gsNorm(v)); });
