@@ -82,8 +82,9 @@ header nav { display: flex; gap: 6px; align-items: center; }
 .view.active { display: flex; }
 
 /* ── Save Buttons ── */
-.save-line-btn { background: none; border: none; cursor: pointer; font-size: 0.7rem; padding: 2px 4px; opacity: 0.3; transition: opacity var(--transition); margin-left: 6px; flex-shrink: 0; }
+.save-line-btn { background: none; border: none; cursor: pointer; font-size: 0.7rem; padding: 2px 4px; opacity: 0.3; transition: opacity var(--transition), transform 0.2s ease; margin-left: 6px; flex-shrink: 0; }
 .save-line-btn:hover { opacity: 1; }
+.save-line-btn.saved { opacity: 1; transform: scale(1.3); pointer-events: none; }
 .ctfar-row { display: flex; align-items: flex-start; }
 .saved-header { padding: 24px 0 16px; display: flex; justify-content: space-between; align-items: center; }
 .saved-header h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; }
@@ -766,15 +767,6 @@ Self-pity: "Poor me, this is so hard, I can't." Keeps you stuck. Self-compassion
 - RIVER OF MISERY: The uncomfortable gap between old pattern and new. The discomfort means you're doing it right.
 - INDULGENT EMOTIONS: Confusion, overwhelm, and worry feel productive but are avoidance. "I don't know" usually means "I don't want to feel the discomfort of deciding."
 
-### Strategic Entry Point — Be on the Same Side
-CRITICAL COACHING SKILL: Don't default to "those are thoughts" if it puts you and the user on opposite sides. Choose where to enter the model based on what creates alliance, not resistance.
-- Sometimes start with the THOUGHT (classic approach — show them the sentence creating the pain).
-- Sometimes start with the DESIRED FEELING: "How do you want to feel here?" — then work backward to what thoughts and actions would create that feeling.
-- Sometimes start with the DESIRED RESULT: "What does the version of you who handles this well look like?" — then work backward.
-- The test: are you both looking at the problem TOGETHER (side by side) or are you facing each other across a debate? If the user would spend the session defending why their thought is a fact, pick a different door.
-- Example: "My mother is passive-aggressive." Starting with "that's a thought" = tug of war. Starting with "How do you want to feel around your mother?" = alliance. You can help them get to compassion without ever requiring them to change their thoughts about their mom. The thought shift often comes naturally AFTER the felt experience changes.
-- You are not married to one entry point. Read the room. Pick the door that opens the conversation, not the one that closes it.
-
 ### Patterns & Meta-Awareness
 - MODEL ON A MODEL: When someone reacts to the coaching itself ("I hate that I think this way"), that reaction is a new model. Coach the reaction.
 - THE THOUGHT UNDER THE THOUGHT: Surface thoughts hide deeper core beliefs. "I'm angry he didn't call" often masks "I'm not important enough."
@@ -922,6 +914,12 @@ function renderSession() {
   c.scrollTop = c.scrollHeight;
 }
 
+function isSaved(text) {
+  if (!state.saved) return false;
+  var clean = text.replace(/&#39;/g, "'");
+  return state.saved.some(function(s) { return s.text === clean; });
+}
+
 function renderMessage(msg) {
   var session = getCurrentSession();
   var saveType = (session && session.mode === 'business') ? 'idea' : 'sentence';
@@ -945,7 +943,9 @@ function renderMessage(msg) {
       ['c','t','f','a','r'].forEach(function(k) {
         var val = escHTML(m[k]||'');
         var safeVal = val.replace(/'/g, '&#39;');
-        html += '<div class="ctfar-row"><span class="ctfar-label">' + k.toUpperCase() + '</span><span class="ctfar-value">' + val + '</span><button class="save-line-btn" title="Save" onclick="saveLine(\'' + saveType + '\',\'' + k.toUpperCase() + ': ' + safeVal + '\')">' + saveLabel + '</button></div>';
+        var lineText = k.toUpperCase() + ': ' + safeVal;
+        var alreadySaved = isSaved(lineText);
+        html += '<div class="ctfar-row"><span class="ctfar-label">' + k.toUpperCase() + '</span><span class="ctfar-value">' + val + '</span><button class="save-line-btn' + (alreadySaved ? ' saved' : '') + '" title="' + (alreadySaved ? 'Saved' : 'Save') + '" onclick="saveLine(\'' + saveType + '\',\'' + lineText + '\',this)">' + (alreadySaved ? '⭐' : saveLabel) + '</button></div>';
       });
       html += '</div></div>';
     });
@@ -953,7 +953,8 @@ function renderMessage(msg) {
   }
   if (parsed.coaching_question) {
     var safeQ = escHTML(parsed.coaching_question).replace(/'/g, '&#39;');
-    html += '<div class="coaching-question">' + escHTML(parsed.coaching_question) + '<button class="save-line-btn" title="Save" onclick="saveLine(\'' + saveType + '\',\'' + safeQ + '\')">' + saveLabel + '</button></div>';
+    var qSaved = isSaved(safeQ);
+    html += '<div class="coaching-question">' + escHTML(parsed.coaching_question) + '<button class="save-line-btn' + (qSaved ? ' saved' : '') + '" title="' + (qSaved ? 'Saved' : 'Save') + '" onclick="saveLine(\'' + saveType + '\',\'' + safeQ + '\',this)">' + (qSaved ? '⭐' : saveLabel) + '</button></div>';
   }
   html += '</div><div class="msg-time">' + formatTime(msg.timestamp) + '</div></div>';
   return html;
@@ -1820,11 +1821,12 @@ function startBizSession() {
 // SAVED ITEMS (Good Sentences / Good Ideas)
 // ═══════════════════════════════════════════════════
 
-function saveLine(type, text) {
+function saveLine(type, text, btn) {
   if (!state.saved) state.saved = [];
   state.saved.push({ type: type, text: text.replace(/&#39;/g, "'"), date: new Date().toISOString() });
   saveState();
   showToast(type === 'idea' ? 'Idea saved!' : 'Sentence saved!');
+  if (btn) { btn.classList.add('saved'); btn.textContent = '⭐'; }
   if (type === 'sentence' && state.settings.apiKey) gsClassify([state.saved.length - 1]);
 }
 
@@ -1835,7 +1837,7 @@ function saveFromMessage(btn) {
   allText = allText.replace(/[⭐💡] save response/g, '').trim();
   var trimmed = prompt('Edit before saving (keep what you want):', allText);
   if (trimmed && trimmed.trim()) {
-    saveLine(btn.dataset.type, trimmed.trim());
+    saveLine(btn.dataset.type, trimmed.trim(), btn);
   }
 }
 
