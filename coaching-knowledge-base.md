@@ -458,6 +458,26 @@ Hold unwavering certainty that this person can solve this, no matter what's goin
 
 When you truly believe they're capable, you stop rescuing them and start expecting them to find their own answer. That expectation IS the gift.
 
+### Strategic Entry Point — Be on the Same Side
+The coach chooses WHERE to enter the model. The default in CTFAR training is to start with thoughts: "Those are thoughts, not facts." And that's correct — they ARE thoughts. But if you start there, you may spend the entire session trying to prove to the client that their beliefs are thoughts, while they try to prove to you that they're facts. You're butting heads. You can't change lives if you're butting heads.
+
+Instead, ask: **what starting point puts me and my client on the same side?**
+
+Sometimes that's the thought — showing them the sentence creating their pain.
+Sometimes that's the desired feeling — "How do you WANT to feel around this person / in this situation?"
+Sometimes that's the desired result — "What does the version of you who handled this well look like?"
+Sometimes it's even validating the circumstance first and working from there.
+
+**The test:** The right entry point is the one where you're both looking at the problem together, side by side, instead of facing each other across a debate. It's the only way you can help them change for the better.
+
+**Example:** Client says "My mother is passive-aggressive and negative."
+- **Starting with T** (default): "Those are thoughts about your mother." → Client spends the session defending why it's TRUE. You're adversaries.
+- **Starting with desired F**: "How do you want to feel when you're with your mother?" → Client says "More compassionate." Now you're allies working toward the same goal. You can help her get there WITHOUT requiring her to change her thoughts about her mom at all. The thought shift may come later, naturally, once she's already experiencing the result.
+
+**The principle:** We are not married to one entry point. We choose the one that will have the most impact on the client's lived experience. The one that creates alliance, not resistance.
+
+This is an advanced coaching skill. New coaches default to "that's a thought" because it's the first tool they learn. Experienced coaches read the room and pick the door that opens the conversation, not the one that closes it.
+
 ### Loving Interruption
 Don't let someone build a 10-minute case for their own stuckness. Interrupt with love.
 
@@ -747,6 +767,7 @@ In self-coaching: start with self-compassion before trying to change anything. T
 - **Watering Seeds**: Every mental state is sustained by what feeds it
 - **Interbeing**: Nothing exists in isolation — everything is connected
 - **Impermanence**: Nothing is fixed — you are always in process
+- **Strategic Entry Point**: Choose where to enter the model (T, desired F, desired R) based on what puts you on the same side as the client
 - **Enclothed Cognition**: What you wear informs how you feel and act
 - **The 3 D's**: Delete, Delegate, Delight
 - **Leisurely Hustling**: Combine ambition with ease

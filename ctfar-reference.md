@@ -122,6 +122,18 @@ A brain dump often contains multiple models running simultaneously. Identify the
 - **Constraint and decision:** Indecision is a decision to stay confused. Make a decision and have your own back.
 - **Emotional adulthood:** Taking full responsibility for your own feelings. No one can "make" you feel anything.
 
+### Strategic Entry Point — Be on the Same Side
+The coach chooses where to enter the model. Starting with "those are thoughts" is correct — AND if that's where you begin, you may spend the entire session in a tug-of-war with the client who wants to prove their thoughts are facts. You can't change lives if you're butting heads.
+
+Instead, choose the entry point that puts you and the client on the same side:
+- Sometimes it's the thought (showing them the sentence creating the pain)
+- Sometimes it's the desired feeling ("How do you want to feel here?")
+- Sometimes it's the desired result ("What does your best self look like in this situation?")
+
+**The test:** The right entry point is the one where you're both looking at the problem together, side by side. It's the only way you can help them change for the better.
+
+**Example:** "My mother is passive-aggressive and negative." Starting with T ("those are thoughts") creates resistance. Starting with desired F ("How do you want to feel around your mother?" → "More compassionate") creates alliance — and you can get there without requiring her to change her thoughts about her mom at all.
+
 ### What a Coach Does NOT Do
 - Give advice ("You should leave him")
 - Diagnose or treat mental health conditions
